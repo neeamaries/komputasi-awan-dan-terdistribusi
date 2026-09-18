@@ -23,7 +23,8 @@
 
 ## Pitfall 2: The Network is Reliable — ditulis oleh A'ilah Nailul Fa'izah
 
-(ulangi struktur di atas)
+**Bukti di skenario:** "Tim menemukan bahwa kode mereka menulis asumsi seperti # network is always reliable, no need for retry dan tidak ada timeout sama sekali pada pemanggilan antar service"
+
 ---
 
 ## Pitfall 3: Design Failure (Arsitektur Monolitik) — ditulis oleh Bethari Nevyta Amaries
