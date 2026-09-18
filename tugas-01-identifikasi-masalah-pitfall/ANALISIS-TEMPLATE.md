@@ -28,6 +28,12 @@
 **Kenapa ini keliru:** Jaringan tidak selalu stabil dan rentan mengalami gangguan. Router/switch bisa saja mengalami gangguan, koneksi terputus atau paket data bisa hilang di tengah pengiriman. Gangguan ini memiliki peluang tinggi terjadi pada saat trafik melonjak, dalam kasus ini jam makan siang atau terdapat promo. Tanpa adanya retry, request yang gagal bisa saja tidak terdeteksi atau tidak dapat diperbaiki oleh sistem, sehingga transaksi yang gagal di tengah jalan bisa hilang.
 
 **Dampak ke FoodGo:** Pada saat jam makan siang atau sedang terjadi promo, request dari modul pesanan ke modul pembayaran bisa saja mengalami kegagalan pada saat pengiriman yang disebabkan oleh koneksi terputus, karena tidak ada retry maka sistem yang gagal terkirim bisa hilang begitu saja sehingga tidak ada upaya perbaikan otomatis.
+
+**Solusi desain awal:** Menerapkan retry dengan exponential backoff yang dimana jika terjadi kegagalan pada panggilan ke modul pembayaran, maka akan di coba ulang beberapa kali dengan jeda yang lebih lama dan tidak langsung dianggap gagal permanen. Menambahkan idempotency key pada setiap transaksi agar ketika request di ulang oleh sistem maupun user, sistem akan mengetahui apakah transaksinya adalah transaksi yang sama jika iya, sistem tidak akan memprosesnya dua kali.
+
+
+**Trade-off:** Logika retry dan idempotency key butuh implementasi dan pengujian ekstra sehingga kompleksitas kode bertambah. Setiap request perlu mengecek idempotency key sebelum diproses yang dapat menyebabkan latensi bisa saja naik.
+
 ---
 
 ## Pitfall 3: Design Failure (Arsitektur Monolitik) — ditulis oleh Bethari Nevyta Amaries
