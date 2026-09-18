@@ -21,13 +21,12 @@
 
 ---
 
-## Pitfall 2: [nama pitfall] — ditulis oleh [nama]
+## Pitfall 2: The Network is Reliable — ditulis oleh A'ilah Nailul Fa'izah
 
 (ulangi struktur di atas)
-
 ---
 
-## Pitfall 2: [nama pitfall] — ditulis oleh [nama]
+## Pitfall 3: Design Failure (Arsitektur Monolitik) — ditulis oleh Bethari Nevyta Amaries
 
 (ulangi struktur di atas)
 
