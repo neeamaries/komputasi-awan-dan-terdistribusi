@@ -25,6 +25,9 @@
 
 **Bukti di skenario:** "Tim menemukan bahwa kode mereka menulis asumsi seperti # network is always reliable, no need for retry dan tidak ada timeout sama sekali pada pemanggilan antar service"
 
+**Kenapa ini keliru:** Jaringan tidak selalu stabil dan rentan mengalami gangguan. Router/switch bisa saja mengalami gangguan, koneksi terputus atau paket data bisa hilang di tengah pengiriman. Gangguan ini memiliki peluang tinggi terjadi pada saat trafik melonjak, dalam kasus ini jam makan siang atau terdapat promo. Tanpa adanya retry, request yang gagal bisa saja tidak terdeteksi atau tidak dapat diperbaiki oleh sistem, sehingga transaksi yang gagal di tengah jalan bisa hilang.
+
+**Dampak ke FoodGo:** Pada saat jam makan siang atau sedang terjadi promo, request dari modul pesanan ke modul pembayaran bisa saja mengalami kegagalan pada saat pengiriman yang disebabkan oleh koneksi terputus, karena tidak ada retry maka sistem yang gagal terkirim bisa hilang begitu saja sehingga tidak ada upaya perbaikan otomatis.
 ---
 
 ## Pitfall 3: Design Failure (Arsitektur Monolitik) — ditulis oleh Bethari Nevyta Amaries
