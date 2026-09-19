@@ -38,7 +38,7 @@
 
 ## Pitfall 3: Design Failure (Arsitektur Monolitik) — ditulis oleh Bethari Nevyta Amaries
 
-(ulangi struktur di atas)
+**Bukti di skenario:** "Saat trafik naik, satu server yang menangani semua modul (pesanan, pembayaran, notifikasi kurir) kewalahan karena semuanya berjalan di satu proses monolitik yang sama."
 
 ## Kesimpulan Kelompok
 
