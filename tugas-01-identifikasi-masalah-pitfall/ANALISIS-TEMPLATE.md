@@ -44,6 +44,10 @@
 
 **Dampak ke FoodGo:** Salah satu dampak  yang terjadi pada FoodGo adalah ketika trafic meningkat pada fungsi pembayaran, fungsi lainnya seperti fungsi pesanan dan notifikasi kurir akan ikut terhambat karena resource yang digunakan untuk fungsi satu dan lainnya saling terhubung. Sehingga hal ini akan mengakibatkan proses yang berjalan menjadi lambat dan tidak efisien.  
 
+**Solusi desain awal:** Mengubah arsitektur monolitik menjadi arsitektur microservice. Yang dimana setiap fungsi dijalankan melalui resource yang berbeda. Sehingga apabila salah satu fungsi membutuhkan resource yang lebih banyak, maka tidak akan mempengaruhi fungsi lainnya. 
+
+**Trade-off:** Apabila arsitektur monolitik diubah menjadi arsitektur microservice, maka akan berpengaruh pada biaya operasional dan kompleksitas sistem. Karena setiap fungsi dijalankan menggunakan resource yang berbeda, maka akan membutuhkan biaya operasional yang lebih tinggi dan tingkat kompleksitas yang lebih tinggi juga.
+
 ## Kesimpulan Kelompok
 
 [Ringkasan: jika FoodGo memperbaiki ketiga pitfall ini, apa arsitektur yang disarankan secara garis besar? Kaitkan dengan Tugas 2.]
