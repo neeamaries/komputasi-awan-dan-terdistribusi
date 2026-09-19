@@ -16,8 +16,17 @@
 - ...
 
 ## Review Silang
-- [Nama] mengomentari analisis [Nama lain]: ...
+- A'ilah Nailul Fa'izah mengomentari analisis Bethari Nevyta Amaries:
+    - Pitfall #1 "Bandwidth is Infinite" :
+    Menurut saya pemilihan bukti sudah cocok karena langsung menyorot kondisi saat jam sibuk promo. Solusi rate limiting yang diajukan juga masuk akal buat menahan lonjakan trafik.
+        
+    Tetapi bagian 'Kenapa ini keliru' dan 'Dampak' rasanya masih agak tertukar antara masalah jaringan (bandwidth) dengan kemampuan mesin server mengolah data. Server yang crash karena menjalankan semua fungsi sekaligus itu lebih condong ke isu keterbatasan CPU/RAM (resource exhaustion). Kalau bicara murni bandwidth, titik masalahnya ada pada pipa kirim-terima datanya yang sesak. Jadi solusinya menurutku nggak cuma sekadar memperbesar bandwidth, tapi bisa diakali dengan kompresi data atau pasang cache/CDN.
 
+    - Pitfall #3 "Design Failure (Arsitektur Monolitik)" :
+    Menurut saya poin utamanya sudah tepat, penjelasan mengenai tidak adanya batasan resource antar-modul di monolitik sudah menggambarkan kenapa modul pembayaran yang padat bisa ikut bikin fitur pesanan dan notifikasi kurir terseret lambat.
+
+    Dari saya sendiri jika modulnya ingin dipecah jadi microservices, sebaiknya menggunakan komunikasi asinkron agar modulnya tidak saling tunggu secara sikron dan terpicunya masalah latensi  baru.
+    
 ## Log Penggunaan AI (Level 2)
 
 > Wajib diisi sesuai kebijakan Level 2 di [`../RUBRIK-UMUM.md`](../RUBRIK-UMUM.md). Tulis "Tidak memakai AI" pada baris pertama jika memang tidak dipakai. Hanya untuk brainstorming ide/outline — bukan untuk kode/analisis/teks akhir.
