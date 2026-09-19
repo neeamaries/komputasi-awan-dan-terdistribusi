@@ -40,6 +40,10 @@
 
 **Bukti di skenario:** "Saat trafik naik, satu server yang menangani semua modul (pesanan, pembayaran, notifikasi kurir) kewalahan karena semuanya berjalan di satu proses monolitik yang sama."
 
+**Kenapa ini keliru:** Asumsi bahwa arsitektur monolitik merupakan pilihan yang tepat untuk sistem FoodGo adalah tidak benar. Karena arsitektur monolitik menggabungkan seluruh fungsi menjadi satu progress yang berjalan secara beriringan. Hal tersebut mengakibatkan apabila salah satu fungsi membutuhkan banyak resource, maka akan mempengaruhi proses dari fungsi lainnya. 
+
+**Dampak ke FoodGo:** Salah satu dampak  yang terjadi pada FoodGo adalah ketika trafic meningkat pada fungsi pembayaran, fungsi lainnya seperti fungsi pesanan dan notifikasi kurir akan ikut terhambat karena resource yang digunakan untuk fungsi satu dan lainnya saling terhubung. Sehingga hal ini akan mengakibatkan proses yang berjalan menjadi lambat dan tidak efisien.  
+
 ## Kesimpulan Kelompok
 
 [Ringkasan: jika FoodGo memperbaiki ketiga pitfall ini, apa arsitektur yang disarankan secara garis besar? Kaitkan dengan Tugas 2.]
