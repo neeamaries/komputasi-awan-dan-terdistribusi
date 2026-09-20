@@ -4,7 +4,7 @@
 
 | Nama | NIM | Kontribusi |
 |---|---|---|
-| [Bethari Nevyta Amaries] | [103072430016] | [Pitfall 1 (Bandwidth is Infinite) & Pitfall 3 (Design Failure : Arsitektur Monolitik)] |
+| [Bethari Nevyta Amaries] | [103072430016] | [Pitfall 1 (Bandwidth is Infinite) & Pitfall 3 (Design Failure: Arsitektur Monolitik)] |
 | [A'ilah Nailul Fa'izah] | [103072400042] | [Pitfall 2 (The Network is Reliable) & Kesimpulan] |
 
 ## Pitfall 1: Bandwidth is Infinite — ditulis oleh Bethari Nevyta Amaries
