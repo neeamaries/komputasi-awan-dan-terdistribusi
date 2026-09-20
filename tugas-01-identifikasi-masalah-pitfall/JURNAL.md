@@ -12,8 +12,9 @@
 - Peserta : Bethari Nevyta Amaries, A'ilah Nailul Fa'izah
 - Poin diskusi : Melakukan diskusi mengenai pitfall ketiga, mencatat log penggunaan AI sejak hari pertama, dan mengisi kesimpulan kelompok. 
 
-## [Tanggal diskusi 2]
-- ...
+## [20 September 2026] - Online Meet
+- Peserta : Bethari Nevyta Amaries, A'ilah Nailul Fa'izah
+- Poin diskusi : Melakukan review silang terhadap analisis pitfall yang telah dibuat masing - masing. 
 
 ## Review Silang
 - A'ilah Nailul Fa'izah mengomentari analisis Bethari Nevyta Amaries:
@@ -26,6 +27,10 @@
     Menurut saya poin utamanya sudah tepat, penjelasan mengenai tidak adanya batasan resource antar-modul di monolitik sudah menggambarkan kenapa modul pembayaran yang padat bisa ikut bikin fitur pesanan dan notifikasi kurir terseret lambat.
 
     Dari saya sendiri jika modulnya ingin dipecah jadi microservices, sebaiknya menggunakan komunikasi asinkron agar modulnya tidak saling tunggu secara sikron dan terpicunya masalah latensi  baru.
+
+- Bethari Nevyta Amaries mengomentari analisis A'ilah Nailul Fa'izah : 
+    - Pitfall #2 "The Network is Reliable" : 
+    Menurut pendapat saya, analisis yang diberikan sudah cukup baik. Namun saya ingin menambahkan bahwa selain retry dengan exponential backoff, sebaiknya diterapkan juga circuit breaker pattern yang dimana digunakan untuk mencegah sistem dari kegagalan berantai. Dengan adanya circuit breaker, jika terjadi kegagalan pada modul pembayaran, maka modul lainnya tidak akan menunggu modul pembayaran untuk merespon terlebih dahulu. Sehingga modul lainnya tetap dapat berjalan dengan baik tanpa terganggu dengan salah satu modul yang mengalami kegagalan. 
 
 ## Log Penggunaan AI (Level 2)
 
