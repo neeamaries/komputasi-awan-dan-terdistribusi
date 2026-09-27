@@ -14,6 +14,18 @@ Berdasarkan hasil diskusi kelompok, kami memutuskan untuk menggunakan kombinasi 
 
 Kemudian pada modul notifikasi dan katalog resto menggunakan Pub Sub karena tidak membutuhkan komunikasi langsung yang cepat, hanya membutuhkan komunikasi bahwa ada event yang terjadi pada modul pesanan dan pembayaran. Selain itu Pub Sub juga hanya perlu mengirimkan event ke message broker tanpa perlu memanggil modul notifikasi dan katalog satu per satu. Sehingga Pub Sub lebih efisien untuk digunakan pada modul notifikasi dan katalog resto. 
 
+## Diagram Arsitektur
+```mermaid
+graph LR
+  Pelanggan[Pelanggan] -->|sinkron: buat pesanan| Pesanan[Service Pesanan]
+  Pesanan -->|sinkron: request bayar| Pembayaran[Service Pembayaran]
+  Pembayaran -->|balasan status bayar| Pesanan
+  Pembayaran -.->|asinkron: publish orderPaid| Broker[(Message Broker)]
+  Broker -.->|asinkron: subscribe orderPaid| Katalog[Service Katalog Resto]
+  Broker -.->|asinkron: subscribe orderPaid| Notifikasi[Service Notifikasi Kurir]
+  Pesanan -->|konfirmasi ke pelanggan| Pelanggan
+```
+
 ## Analisis Alur Skenario End to End 
 Pelanggan mengirim pesanan ke Service pesanan, setelah itu service pesanan akan langsung memanggil service pembayaran dan menunggu balasannya (request-response). Menurut kami fase ini harus sinkron karena pesanan baru boleh dianggap valid setelah pembayaran benar-benar berhasil. Jika dibuat asinkron, ada resiko pelanggan melihat status pesanan diterima padahal pembayaran gagal terproses.
 
