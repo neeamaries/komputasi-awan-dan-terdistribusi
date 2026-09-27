@@ -2,6 +2,20 @@
 
 **Materi terkait:** Architectural style (Layered, SOA, Peer-to-Peer, Publish-Subscribe).
 
+**Kelompok:** [Kelompok 5]
+
+| Nama | NIM | Kontribusi |
+|---|---|---|
+| [Bethari Nevyta Amaries] | [103072430016] | [Pitfall 1 (Bandwidth is Infinite) & Pitfall 3 (Design Failure: Arsitektur Monolitik)] |
+| [A'ilah Nailul Fa'izah] | [103072400042] | [Pitfall 2 (The Network is Reliable) & Kesimpulan] |
+
+## Gaya Arsitektur yang Dipilih
+Berdasarkan hasil diskusi kelompok, kami memutuskan untuk menggunakan kombinasi dari Service Oriented Architecture (SOA) dan Publish Subscribe (Pub Sub) pada skenario FoodGo. Yang dimana pada modul pembayaran dan pesanan menggunakan SOA karena membutuhkan komunikasi langsung dan sinkron yang memberikan notifikasi secara real time kepada pelanggan apakah pembayaran yang dilakukan berhasil atau gagal. Jika kedua modul ini menggunakan Pub Sub, maka pelanggan tidak akan mendapatkan notifikasi secara real time karena modul pembayaran akan mengirimkan event ke message broker tanpa perlu mengetahui siapa yang menerimanya.
+
+Kemudian pada modul notifikasi dan katalog resto menggunakan Pub Sub karena tidak membutuhkan komunikasi langsung yang cepat, hanya membutuhkan komunikasi bahwa ada event yang terjadi pada modul pesanan dan pembayaran. Selain itu Pub Sub juga hanya perlu mengirimkan event ke message broker tanpa perlu memanggil modul notifikasi dan katalog satu per satu. Sehingga Pub Sub lebih efisien untuk digunakan pada modul notifikasi dan katalog resto. 
+
+#Analisis Alur Skenario End to End 
+
 ## Studi Kasus
 
 Melanjutkan Tugas 1: FoodGo butuh sistem yang **decoupled** agar tim kurir dan tim resto tidak saling mengganggu ketika salah satu modul diperbarui/deploy ulang. Saat ini semua modul (pesanan, pembayaran, notifikasi kurir, katalog resto) berjalan sebagai satu aplikasi monolitik — sekali deploy, semua modul ikut restart dan berisiko downtime total.
