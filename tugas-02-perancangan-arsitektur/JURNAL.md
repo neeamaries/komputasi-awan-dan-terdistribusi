@@ -6,6 +6,9 @@
 ## [24 September 2026] 
 - A'ilah Nailul Fa'izah = Saya memilih Pub-Sub atau Publish-Subscribe sebagai arsitektur yang cocok untuk skenario FoodGo, modul pesanan cukup mengirim event ke message broker tanpa perlu tau siapa penerimanya. Tetapi Pub-Sub juga memiliki kekurangan dimana alurnya tidak linear sehingga sulit untuk ditelusuri saat terjadi error dan jika broker down maka seluruh komunikasi antar modul ikut terhenti.
 
+## [27 September 2026] - Offline Meet
+- Berdasarkan hasil analisis kami didapatkan kesimpulan bahwa arsitektur yang cocok untuk skenario FoodGo adalah kombinasi dari SOA dan Pub-Sub. Modul pembayaran dan pesanan menggunakan SOA karena membutuhkan komunikasi langsung dan sinkron, sedangkan modul notifikasi dan katalog resto menggunakan Pub Sub karena tidak membutuhkan komunikasi langsung dan sinkron antar modul. 
+
 ## [Tanggal]
 - Opsi arsitektur yang dipertimbangkan: ...
 - Kenapa akhirnya pilih [SOA/Pub-Sub]: ...
