@@ -8,11 +8,7 @@
 
 ## [27 September 2026] - Offline Meet
 - Berdasarkan hasil analisis kami didapatkan kesimpulan bahwa arsitektur yang cocok untuk skenario FoodGo adalah kombinasi dari SOA dan Pub-Sub. Modul pembayaran dan pesanan menggunakan SOA karena membutuhkan komunikasi langsung dan sinkron, sedangkan modul notifikasi dan katalog resto menggunakan Pub Sub karena tidak membutuhkan komunikasi langsung dan sinkron antar modul. 
-
-## [Tanggal]
-- Opsi arsitektur yang dipertimbangkan: ...
-- Kenapa akhirnya pilih [SOA/Pub-Sub]: ...
-- Revisi diagram (versi 1 → versi 2, apa yang berubah dan kenapa): ...
+- Revisi diagram yang dibuat dengan menambahkan panah dua arah pada modul pembayaran dan pesanan, karena kedua modul ini masih membutuhkan komunikasi sinkron. 
 
 ## Log Penggunaan AI (Level 2)
 
@@ -22,4 +18,4 @@
 |---|---|---|---|---|
 | 23 September 2026 | Claude | Menanyakan penjelasan konsep SOA dan Publish-Subscribe secara detail, termasuk analogi dan perbandingannya | AI menjelaskan konsep umum SOA (sinkron, request-response, saling manggil langsung) dan Pub-Sub (asinkron, event-driven, lewat broker), beserta kelebihan-kekurangan masing-masing. | Memahami konsep yang dijelaskan AI mengenai gaya arsitektur dan mana yang akan dipilih untuk tiap modul FoodGo. Sebagai bahan diskusi dan keputusan kelompok. |
 | 24 September 2026 | Gemini | Berikan penjelasan mengenai arsitektur SOA dan Pub-Sub, paparkan juga kelebihan serta kekurangan dari masing masing arsitektur | Menjelaskan definisi SOA (pemecahan layanan berbasis ESB) dan Pub-Sub (arsitektur pesan asinkron berbasis Message Broker). Merinci kelebihan dan kekurangan masing-masing (seperti isu SPOF dan latensi ESB pada SOA vs eventual consistency dan debugging pada Pub-Sub), serta menyajikan tabel perbandingan sifat komunikasi, pola interaksi, coupling, dan penggunaan utama | Memahami kedua arsitektur dan mengusulkan penggunaan arsitektur Pub-Sub agar modul pesanan FoodGo dapat mengirim event secara asinkron tanpa ketergantungan langsung antar-modul. |
-| ... | ... | ... | ... | ... |
+| 27 September 2026 | Claude | Menanyakan cara menulis syntax diagram Mermaid dan bagaimana menandai komunikasi sinkron/asinkron secara visual | AI menjelaskan syntax dasar Mermaid (graph LR, bentuk kotak/silinder, garis panah biasa vs putus-putus untuk sinkron/asinkron) | Syntax dipakai untuk menyusun diagram sendiri seperti urutan komponen dan siapa memanggil siapa.|
