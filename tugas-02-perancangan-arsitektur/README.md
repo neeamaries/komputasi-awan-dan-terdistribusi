@@ -29,7 +29,7 @@ graph LR
 ## Analisis Alur Skenario End to End 
 Pelanggan mengirim pesanan ke Service pesanan, setelah itu service pesanan akan langsung memanggil service pembayaran dan menunggu balasannya (request-response). Menurut kami fase ini harus sinkron karena pesanan baru boleh dianggap valid setelah pembayaran benar-benar berhasil. Jika dibuat asinkron, ada resiko pelanggan melihat status pesanan diterima padahal pembayaran gagal terproses.
 
-Setelah pembayaran berhasil, service pesanan tidak memanggil service katalog resto dan service notifikasi secara langsung, tetapi memberikan notifikasi satu event OrderPaid ke broker. Broker kemudian meneruskan event OrderPaid yang sama ke dua subscriber yaitu service katalog resto dan service notifikasi, keduanya kemudian melakukan proses sendiri tanpa ditunggu oleh service pesanan. Pelanggan kemudian mendapatkan notifikasi begitu pembayaran telah berhasil tanpa harus menungggu resto merespon atau kurir ditemukan terlebih dahulu.
+Setelah pembayaran berhasil, service pembayaran tidak memanggil service katalog resto dan service notifikasi secara langsung, tetapi memberikan notifikasi satu event OrderPaid ke broker. Broker kemudian meneruskan event OrderPaid yang sama ke dua subscriber yaitu service katalog resto dan service notifikasi, keduanya kemudian melakukan proses sendiri tanpa ditunggu oleh service pesanan. Pelanggan kemudian mendapatkan notifikasi begitu pembayaran telah berhasil tanpa harus menungggu resto merespon atau kurir ditemukan terlebih dahulu.
 
 ## Studi Kasus
 
