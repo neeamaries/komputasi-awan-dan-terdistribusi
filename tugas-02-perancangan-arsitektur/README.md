@@ -17,19 +17,19 @@ Kemudian pada modul notifikasi dan katalog resto menggunakan Pub Sub karena tida
 ## Diagram Arsitektur
 ```mermaid
 graph LR
-  Pelanggan[Pelanggan] -->|sinkron: buat pesanan| Pesanan[Service Pesanan]
-  Pesanan -->|sinkron: request bayar| Pembayaran[Service Pembayaran]
+  Pelanggan[Pelanggan] -->|sinkron: buat pesanan| Pesanan[Modul Pesanan]
+  Pesanan -->|sinkron: request bayar| Pembayaran[Modul Pembayaran]
   Pembayaran -->|balasan status bayar| Pesanan
   Pembayaran -.->|asinkron: publish orderPaid| Broker[(Message Broker)]
-  Broker -.->|asinkron: subscribe orderPaid| Katalog[Service Katalog Resto]
-  Broker -.->|asinkron: subscribe orderPaid| Notifikasi[Service Notifikasi Kurir]
+  Broker -.->|asinkron: subscribe orderPaid| Katalog[Modul Katalog Resto]
+  Broker -.->|asinkron: subscribe orderPaid| Notifikasi[Modul Notifikasi Kurir]
   Pesanan -->|konfirmasi ke pelanggan| Pelanggan
 ```
 
 ## Analisis Alur Skenario End-to-End 
-Pelanggan mengirim pesanan ke Service pesanan, setelah itu service pesanan akan langsung memanggil service pembayaran dan menunggu balasannya (request-response). Menurut kami fase ini harus sinkron karena pesanan baru boleh dianggap valid setelah pembayaran benar-benar berhasil. Jika dibuat asinkron, ada resiko pelanggan melihat status pesanan diterima padahal pembayaran gagal terproses.
+Pelanggan mengirim pesanan ke Modul Pesanan, setelah itu Modul Pesanan akan langsung memanggil Modul Pembayaran dan menunggu balasannya. Menurut kami fase ini harus sinkron karena pesanan baru boleh dianggap valid setelah pembayaran benar-benar berhasil. Jika dibuat asinkron, ada resiko pelanggan melihat status pesanan diterima padahal pembayaran gagal terproses. Setelah proses pembayaran selesai, Modul Pembayaran mengirimkan balasan status (berhasil/gagal) kembali ke Modul Pesanan.
 
-Setelah pembayaran berhasil, service pembayaran tidak memanggil service katalog resto dan service notifikasi secara langsung, tetapi memberikan notifikasi satu event OrderPaid ke broker. Broker kemudian meneruskan event OrderPaid yang sama ke dua subscriber yaitu service katalog resto dan service notifikasi, keduanya kemudian melakukan proses sendiri tanpa ditunggu oleh service pesanan. Pelanggan kemudian mendapatkan notifikasi begitu pembayaran telah berhasil tanpa harus menungggu resto merespon atau kurir ditemukan terlebih dahulu.
+Setelah pembayaran berhasil, Modul Pembayaran tidak memanggil Modul Katalog Resto dan Modul Notifikasi secara langsung, tetapi memberikan notifikasi satu event OrderPaid ke broker. Broker kemudian meneruskan event OrderPaid yang sama ke dua subscriber yaitu Modul Katalog Resto dan Modul Notifikasi, keduanya kemudian melakukan proses sendiri tanpa ditunggu oleh Modul Pesanan. Modul Pesanan kemudian mengirimkan konfirmasi ke pelanggan begitu pembayaran telah berhasil, tanpa harus menunggu resto merespon atau kurir ditemukan terlebih dahulu.
 
 ## Analisis Trade-off
 Berdasarkan hasil analisis kami, penggunaan arsitektur Pub Sub pada modul notifikasi kurir dan katalog resto dapat mengurangi masalah coupling yang terjadi pada Tugas 1. Yang dimana, apabila katalog down maka modul lainnya tetap berjalan dan tidak saling menunggu. Hal tersebut juga berlaku pada modul notifikasi kurir, apabila kurir melakukan update pada kode kurir modul lainnya tidak akan ikut terpengaruh. 
