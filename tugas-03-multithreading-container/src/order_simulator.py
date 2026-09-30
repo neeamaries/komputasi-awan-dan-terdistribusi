@@ -17,8 +17,7 @@ NUM_WORKERS = 10        # jumlah thread pekerja
 processed_count = 0
 
 # TODO 1: Buat objek Lock di sini untuk melindungi `processed_count`.
-# lock = threading.Lock()
-
+lock = threading.Lock()
 
 def process_order(order_id: int) -> None:
     """Proses satu pesanan. Dipanggil oleh tiap thread pekerja."""
@@ -30,10 +29,23 @@ def process_order(order_id: int) -> None:
     # TODO 2: Tambahkan increment `processed_count` DI SINI.
     # Langkah 1: jalankan dulu tanpa lock (increment biasa: processed_count += 1)
     #            dan buktikan hasil akhirnya sering salah (< NUM_ORDERS).
+
+    # === START CODE TANPA LOCK === 
+    # # menambahkan time sleep agar delay dan race condition dapat terjadi
+    # temp = processed_count
+    # time.sleep(0.0001)          
+    # processed_count = temp + 1
+    # === END CODE TANPA LOCK ===
+
     # Langkah 2: bungkus increment dengan `with lock:` dan buktikan hasilnya
     #            selalu tepat NUM_ORDERS. Simpan bukti kedua kondisi ini
     #            di JURNAL.md / folder bukti/.
-    pass
+
+    # === START CODE DENGAN LOCK ===
+    with lock:
+        time.sleep(0.0001)
+        processed_count += 1
+    # === END CODE DENGAN LOCK ===
 
 
 def worker(order_ids: list) -> None:
