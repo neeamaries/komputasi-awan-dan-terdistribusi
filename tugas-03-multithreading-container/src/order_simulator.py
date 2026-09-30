@@ -30,12 +30,12 @@ def process_order(order_id: int) -> None:
     # Langkah 1: jalankan dulu tanpa lock (increment biasa: processed_count += 1)
     #            dan buktikan hasil akhirnya sering salah (< NUM_ORDERS).
 
-    # === START CODE TANPA LOCK === 
+    # # === START CODE TANPA LOCK === 
     # # menambahkan time sleep agar delay dan race condition dapat terjadi
     # temp = processed_count
     # time.sleep(0.0001)          
     # processed_count = temp + 1
-    # === END CODE TANPA LOCK ===
+    # # === END CODE TANPA LOCK ===
 
     # Langkah 2: bungkus increment dengan `with lock:` dan buktikan hasilnya
     #            selalu tepat NUM_ORDERS. Simpan bukti kedua kondisi ini
