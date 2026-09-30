@@ -63,6 +63,18 @@ def main() -> None:
     threads = []
     # ... isi logika pembagian tugas & pembuatan thread di sini ...
 
+    # membagi dengan 10 worker 
+    chunk_size = NUM_ORDERS // NUM_WORKERS
+
+    for i in range(NUM_WORKERS):
+        start = i * chunk_size
+        end = start + chunk_size # menghitung index terakhir
+        chunk = order_ids[start:end] 
+        t = threading.Thread(target=worker, args=(chunk,)) # menambahkan thread baru
+        threads.append(t) # menyimpan thread ke list 
+        t.start()
+    
+
     for t in threads:
         t.join()
 
