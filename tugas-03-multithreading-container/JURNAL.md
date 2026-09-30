@@ -12,7 +12,8 @@
 - Bethari Nevyta Amaries : Docker desktop gagal start dan menunjukan pesan error "Virtualization support not detected". Solusi yang dilakukan adalah mengaktifkan fitur WSL dan VM platform melalui PowerShell. 
 - Bethari Nevyta Amaries : Saat membuka docker desktop muncul prompt update WSL. Solusi yang dilakukan update melalui PowerShell kemudian restart laptop. 
 - Bethari Nevyta Amaries : Dockerr pakai WSL2 backend, jadi pengaturan batas RAM tidak tersedia. Solusinya melakukan konfigurasi manual dengan file ".wslconfig".
-- Error yang ditemui saat `docker build`/`docker run` dan cara memperbaikinya: ...
+- A'ilah Nailul Fa'izah : Docker Desktop juga gagal start dengan error "Virtualization support not detected" karena virtualisasi belum aktif. Solusi yang dilakukan adalah mengaktifkan fitur Virtual Machine Platform dan Windows Hypervisor Platform.
+
 
 ## Log Penggunaan AI (Level 2)
 
@@ -20,4 +21,7 @@
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
+| 30 September 2026 | Claude | Menanyakan fungsi threading.Lock serta perbandingan keunggulan dan kekurangan menggunakan lock dibanding tanpa lock | AI menjelaskan konsep dasar cara kerja Lock seperti mekanisme acquire/release, critical section dan poin-poin trade-off performa vs konsistensi data secara umum | Membandingkan penjelasan konsep ini dengan hasil percobaan yang kami jalankan sendiri |
+| 30 September 2026 | Claude | Menanyakan solusi error Docker Desktop "Virtualization support not detected" | AI menyarankan langkah umum: cek status virtualisasi di Task Manager, aktifkan fitur Hyper-V/Virtual Machine Platform lewat PowerShell, dan update WSL2 | Mempraktikkan langkah-langkah ini di laptop sendiri |
 | ... | ... | ... | ... | ... |
+
