@@ -70,7 +70,7 @@ def main() -> None:
         start = i * chunk_size
         end = start + chunk_size # menghitung index terakhir
         chunk = order_ids[start:end] 
-        t = threading.Thread(target=worker, args=(chunk,)) # menambahkan thread baru
+        t = threading.Thread(target=worker, args=(chunk,)) # untuk menambahkan thread baru
         threads.append(t) # menyimpan thread ke list 
         t.start()
     
