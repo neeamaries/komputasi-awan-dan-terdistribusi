@@ -8,6 +8,9 @@
 - Hasil `processed_count` setelah perbaikan: ...
 
 ## Kendala Docker
+- Bethari Nevyta Amaries : Docker desktop gagal start dan menunjukan pesan error "Virtualization support not detected". Solusi yang dilakukan adalah mengaktifkan fitur WSL dan VM platform melalui PowerShell. 
+- Bethari Nevyta Amaries : Saat membuka docker desktop muncul prompt update WSL. Solusinya yang dilakukan update melalui PowerShell kemudian restart laptop. 
+- Bethari Nevyta Amaries : Dockerr pakai WSL2 backend, jadi pengaturan batas RAM tidak tersedia. Solusinya melakukan konfigurasi manual dengan file ".wslconfig".
 - Error yang ditemui saat `docker build`/`docker run` dan cara memperbaikinya: ...
 
 ## Log Penggunaan AI (Level 2)
