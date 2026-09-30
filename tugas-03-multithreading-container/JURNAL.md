@@ -6,7 +6,7 @@
 - Kenapa bisa meleset (jelaskan mekanisme race condition dengan kata sendiri): karena pada percobaan kedua, kami menambahkan sleep time pada proses thread sehingga race condition dapat terjadi, yang menyebabkan pada percobaan pertama tidak terjadi race condition karena proses yang berjalan terlalu cepat. Race condition terjadi karena thread beberapa thread mengakses dan mengubah data yang sama secara bersamaan, hal tersebut membuat hasilnya meleset karena thread saling berebutan untuk mengubah data.  
 
 ## Percobaan dengan Lock
-- Hasil `processed_count` setelah perbaikan: ...
+- Hasil `processed_count` setelah perbaikan: Setelah melakukan percobaan dengan lock, hasil yang di dapatkan pada setiap percobaan adalah 100, ini merupakan hasil yang konsisten. Berbeda dengan percobaan tanpa lock yang hasilnya berubah-ubah.
 
 ## Kendala Docker
 - Bethari Nevyta Amaries : Docker desktop gagal start dan menunjukan pesan error "Virtualization support not detected". Solusi yang dilakukan adalah mengaktifkan fitur WSL dan VM platform melalui PowerShell. 
