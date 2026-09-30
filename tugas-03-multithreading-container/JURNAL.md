@@ -23,5 +23,7 @@
 |---|---|---|---|---|
 | 30 September 2026 | Claude | Menanyakan fungsi threading.Lock serta perbandingan keunggulan dan kekurangan menggunakan lock dibanding tanpa lock | AI menjelaskan konsep dasar cara kerja Lock seperti mekanisme acquire/release, critical section dan poin-poin trade-off performa vs konsistensi data secara umum | Membandingkan penjelasan konsep ini dengan hasil percobaan yang kami jalankan sendiri |
 | 30 September 2026 | Claude | Menanyakan solusi error Docker Desktop "Virtualization support not detected" | AI menyarankan langkah umum: cek status virtualisasi di Task Manager, aktifkan fitur Hyper-V/Virtual Machine Platform lewat PowerShell, dan update WSL2 | Mempraktikkan langkah-langkah ini di laptop sendiri |
+| 30 September 2026 | Claude | Menanyakan konsep dasar Docker, container, image, dan Dockerfile | AI menjelaskan analogi container dan konsep umum kenapa Docker dipakai untuk portabilitas | Konsep dipakai sebagai pengetahuan awal sebelum mengisi TODO |
+| 30 September 2026 | Claude | Menanyakan cara mengatasi error "Virtualization support not detected" dan konfigurasi WSL2/RAM di Docker Desktop | AI menjelaskan langkah teknis mengaktifkan fitur WSL2 lewat DISM, update WSL, dan cara membuat file `.wslconfig` untuk membatasi RAM | Langkah dipraktikkan langsung untuk memperbaiki error |
 | ... | ... | ... | ... | ... |
 
