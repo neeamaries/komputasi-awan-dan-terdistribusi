@@ -10,6 +10,7 @@
 
 ## Percobaan dengan Lock
 - Hasil `processed_count` setelah perbaikan: Setelah melakukan percobaan dengan lock, hasil yang di dapatkan pada setiap percobaan adalah 100, ini merupakan hasil yang konsisten. Berbeda dengan percobaan tanpa lock yang hasilnya berubah-ubah.
+- Kenapa hasilnya konsisten : Lock membuat proses `processed_count += 1` yang hanya bisa dikerjakan oleh satu thread dalam satu waktu. Saat satu thread sedang masuk ke bagian `with lock:`, thread lain yang ingin mengakses `processed_count` dipaksa menunggu sampai thread pertama selesai dan melepas lock-nya, sehingga tidak ada dua thread yang membaca nilai yang sama secara bersamaan dan setiap increment benar-benar dihitung satu persatu tanpa ada yang saling menimpa.
 
 ## Kendala Docker
 - Bethari Nevyta Amaries : Docker desktop gagal start dan menunjukan pesan error "Virtualization support not detected". Solusi yang dilakukan adalah mengaktifkan fitur WSL dan VM platform melalui PowerShell. 
