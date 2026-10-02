@@ -2,6 +2,22 @@
 
 **Materi terkait:** Threading, Virtualization, Containers.
 
+**Kelompok:** [Kelompok 5]
+
+| Nama | NIM |
+|---|---|
+| [Bethari Nevyta Amaries] | [103072430016] |
+| [A'ilah Nailul Fa'izah] | [103072400042] |
+
+## Analisis Race Condition
+Berdasarkan hasil percobaan yang dilakukan,processed_count += 1 dijalankan oleh banyak thread secara bersamaan tanpa lock menyebabkan terjadinya race condition. Hal tersebut terjadi karena beberapa thread mengakses data yang sama secara bersamaan, sehingga hasil yang didapatkan saling berebutan dan hasil tidak maksimal. 
+
+## Perbaikan dengan Lock
+Untuk menangani masalah race condition, kami menambahkan lock pada bagian processed_count += 1. Dengan adanya implementasi lock, hanya satu thread yang dapat mengakses processed_count pada satu waktu. Hal tersebut terjadi karena saat menggunakan lock thread dibatasi untuk mengakses data yang sama secara bersamaan, sehingga tidak akan terjadi saling berebutan antara thread satu dengan yang lainnya. 
+
+## Kenapa Threading, Bukan Multiprocessing/Proses Berat
+
+
 ## Studi Kasus
 
 Server FoodGo boros sumber daya karena setiap permintaan pesanan masuk diproses sebagai **proses baru yang berat** (mis. `fork()` proses OS penuh per request). Saat 100 pesanan masuk bersamaan, server kehabisan memori karena tiap proses membawa overhead-nya sendiri.
