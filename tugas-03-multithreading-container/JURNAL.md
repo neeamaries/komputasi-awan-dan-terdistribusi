@@ -1,7 +1,7 @@
 # Jurnal Proses — Tugas 3
 
 ## [2 Oktober 2026] 
-- Bethari Nevyta Amaries mengomentari analisis A'ilah Nailul Fa'izah : menurut pendapat saya, tambahkan alasan kenapa percobaan menggunakan lock memberikan hasil yang konsisten. 
+- Bethari Nevyta Amaries mengomentari analisis A'ilah Nailul Fa'izah : menurut pendapat saya, tambahkan alasan kenapa percobaan menggunakan lock memberikan hasil yang konsisten . 
 
 ## Percobaan tanpa Lock
 - Hasil `processed_count` yang didapat: Pada percobaan pertama, hasil yang didapatkan sama seperti saat menggunakan lock, yaitu 100. Hal tersebut terjadi karena proses thread yang berjalan cukup cepat sehingga tidak terjadi race condition. 
