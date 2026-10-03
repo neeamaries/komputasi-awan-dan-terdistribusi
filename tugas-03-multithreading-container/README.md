@@ -10,7 +10,7 @@
 | [A'ilah Nailul Fa'izah] | [103072400042] |
 
 ## Analisis Race Condition
-Berdasarkan hasil percobaan yang dilakukan, penggunaan beberapa thread untuk memproses nilai processed_count tanpa menggunakan lock menyebabkan terjadinya race condition. Pada kode yang kita buat, proses penambahan nilai sendiri tidak dilakukan secara langsung, namun memalui dua tahap yaitu `temp = processed_count` dan `processed_count = temp + 1`. 
+Berdasarkan hasil percobaan yang dilakukan, penggunaan beberapa thread untuk memproses nilai processed_count tanpa menggunakan lock menyebabkan terjadinya race condition. Pada kode yang kita buat, proses penambahan nilai sendiri tidak dilakukan secara langsung, namun memalui dua tahap yaitu `temp = processed_count` dan `processed_count = temp + 1` . 
 
 Kondisi race condition sendiri tapat terjadi ketika beberapa thread mengakses dan mengubah proccessed_count pada waktu yang bersamaan. Seperti contoh Thread A mengakses nilai processed_count sebesar 5, kemudian Thread B juga mengakses nilai yang sama sebelum Thread A menyimpan hasil perubahannya. Akibatnya, hasil penambahan dari salah satu thread tertimpa oleh thread lainnya sehingga jumlah akhir processed tidak sesuai dengan jumlah seharusnya. 
 
