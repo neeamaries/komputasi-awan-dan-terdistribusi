@@ -10,10 +10,14 @@
 | [A'ilah Nailul Fa'izah] | [103072400042] |
 
 ## Analisis Race Condition
-Berdasarkan hasil percobaan yang dilakukan,processed_count += 1 dijalankan oleh banyak thread secara bersamaan tanpa lock menyebabkan terjadinya race condition. Hal tersebut terjadi karena beberapa thread mengakses data yang sama secara bersamaan, sehingga hasil yang didapatkan saling berebutan dan hasil tidak maksimal. 
+Berdasarkan hasil percobaan yang dilakukan, penggunaan beberapa thread untuk memproses nilai processed_count tanpa menggunakan lock menyebabkan terjadinya race condition. Pada kode yang kita buat, proses penambahan nilai sendiri tidak dilakukan secara langsung, namun memalui dua tahap yaitu `temp = processed_count` dan `processed_count = temp + 1`. 
+
+Kondisi race condition sendiri tapat terjadi ketika beberapa thread mengakses dan mengubah proccessed_count pada waktu yang bersamaan. Seperti contoh Thread A mengakses nilai processed_count sebesar 5, kemudian Thread B juga mengakses nilai yang sama sebelum Thread A menyimpan hasil perubahannya. Akibatnya, hasil penambahan dari salah satu thread tertimpa oleh thread lainnya sehingga jumlah akhir processed tidak sesuai dengan jumlah seharusnya. 
 
 ## Perbaikan dengan Lock
-Untuk menangani masalah race condition, kami menambahkan lock pada bagian processed_count += 1. Dengan adanya implementasi lock, hanya satu thread yang dapat mengakses processed_count pada satu waktu. Hal tersebut terjadi karena saat menggunakan lock thread dibatasi untuk mengakses data yang sama secara bersamaan, sehingga tidak akan terjadi saling berebutan antara thread satu dengan yang lainnya. 
+Untuk menangani masalah race condition, kami menambahkan lock pada bagian kode yang melakukan pembaruan nilai processed_count. Dengan menggunakan lock, hanya satu thread yang dapat mengakses dan mengubah nilai pada processed_count pada waktu yang sama. Thread lain harus menunggu hingga thread yang yang sedang mengakses lock selesai melakukan proses tersebut. 
+
+Dengan demikian, proses penambahan nilai pada processed_count dapat dilakukan secara berurutan dan nilai yang sedang ditambahkan tidak tertimpa oleh thread lain. Maka dari itu, hasil akhirnya menjadi lebih konsisten dan sesuai dengan jumlah proses yang seharusnya. 
 
 ## Kenapa Threading, Bukan Multiprocessing/Proses Berat
 Awalnya tiap pesanan diproses sebagai proses OS baru (`fork()`) yang membawa overhead memory terpisah sehingga kehabisan memori saat 100 pesanan masuk bersamaan, ini merupakan pemborosan resource sehingga kami memilih threading karena thread berbagi memory dalam satu proses yang sama, dimana 100 pesanan cukup ditangani oleh 10 thread pekerja tanpa alokasi memori terpisah per request. Pekerjaan memproses pesanan disimulasikan dengan (`time.sleep()`), sehingga tidak memerlukan isolasi memori penuh seperti pada proses OS berat. Trade-off dari berbagi memori ini adalah risiko race condition pada counter bersama (`processed_count`), yang kemudian ditangani dengan `threading.Lock()`. Dengan begitu, masalah boros resource pada server dapat teratasi karena banyak pesanan bisa diproses sekaligus dengan overhead yang lebih kecil dibanding proses OS penuh.
