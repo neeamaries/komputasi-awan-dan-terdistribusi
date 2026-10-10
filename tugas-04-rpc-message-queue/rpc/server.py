@@ -56,6 +56,5 @@ def main():
     print("RPC server modul Pembayaran berjalan di port 8000...")
     server.serve_forever()
 
-
 if __name__ == "__main__":
     main()
