@@ -10,14 +10,29 @@
 | [A'ilah Nailul Fa'izah] | [103072400042] |
 
 ## Hasil Analisis
+### Jalur A: RPC (Sinkron)
+**Bukti client menunggu**
+Server diberi jeda 3 detik agar terlihat bahwa client benar-benar menunggu jawaban. Pada terminal client, waktu tunggu saat menanyakan saldo tercatat 5,03 detik, 5,04 detik, hingga 6,29 detik. Selama waktu itu client berhenti dan baru lanjut ke langkah pembayaran setelah server membalas.
+**Keputusan: user tidak ditemukan**
+Jika nama user tidak ada pada daa saldo, server akan mengirim pesan kesalan "User tidak ditemukan" ke client. Pesan ini diterima client sebagai tanda ada masalah, tetapi server tetap berjalan normal. Cara ini dipilih agar modul pesanan akan mengetahui jika user tersebut tidak ada dan tidak mengira user itu hanya punya saldo nol.
+**Temuan tambahan**
+Saat pembayaran dicoba dengan jumlah yag melebihi saldo (misalnya 60000 padahal saldo 50000), server tidak mengirim pesan kesalanan. Server membalas dengan status "gagal" dan saldo tetap 50000. Kami membedakannya menjadi dua hal, Masalah data seperti user tidak ditemukan dilaporkan sebagai kesalahan, sedangkan hasil transaksi seperti saldo kurang dilaporkan sebagai status biasa.
 
-## Jalur A: RPC (Sinkron)
+### Jalur B: Message Queue (Asinkron)
+**Uji "pesan tidak hilang"**
+Antrean dan pesan diatur agar tersimpan permanen. Saat modul kurir dimatikan lalu publisher mengirim pesan, pesan tetap tersimpan aman di RabbitMQ. Dashboard RabbitMQ menunjukkan pesan sempat menumpuk, lalu ketika modul kurir dinyalakan kembali, semua pesan diproses sampai antrean kembali kosong.
 
-## Jalur B: Message Queue (Asinkron)
-
-## Analisis Pemilihan Pola Komunikasi
-
-
+### Analisis Pemilihan Pola Komunikasi
+**Kenapa RPC cocok untuk Pesanan ke Pembayaran**
+Karena membutuhkan jawaban pada saat itu juga. Sebelum pesanan dilanjutkan atau dibatalkan, sistem harus memastikan dulu uang pembeli cukup. Kalau belum bayar atau uangnya kurrang, pesanan tidak boleh dilanjutkan.
+**Kenapa MQ cocok untuk Pembayaran ke Kurir**
+Karena bagian ini hanya kabar satu arah. Pembeli sudah selesai membyara, jadi pembyaran tidak perlu menunggu kurir siap atau membuka aplikasinya. Kabar pesanan cukup dititipkan di antrean supaya kurir bisa membacanya kapan pun sedang aktif.
+**Apa yang terjadi kalau dipakai di skenario yang salah**
+- Jika Message Queue dipakai untuk Pesanan ke Pembayarran, alur belanja jadi membingungkan. pembeli harus menunggu tanpa kejelasan apakah transaksinya diterima atau ditolak, karena pesanan dikirim tanpa langsung meminta jawaban soal saldo.
+- JIka RPC dipakai untuk pembayaran ke kurir, kedua modul bisa jadi saling bergantung. Kalau kurir sedang susah sinyal, aplikasinya mati, atau lambat merespon, proses pembayaran pembeli ikut macet dan tertahan, padahal uangnya sudah siap dipotong
+**Trade-off**
+- RPC : Mudah dipahami dan hasilnya langsung didapat saat itu juga, tetapi kalau pihak penerima lambat atau bermasalah, pihak pengirim juga ikut terjebak menunggu.
+- Message Queue : Fleksible dan aman karena pengirim bisa langsugn lanjut bekerja tanpa takut pesan hilang saat penerima sedang tidak aktif, tetapi butuh perantara tambahan dan kita tidak langsung tau kapan pesan itu selesai dikerjakan.
 
 ## Studi Kasus
 
