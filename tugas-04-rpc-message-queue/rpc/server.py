@@ -20,8 +20,7 @@ def cek_saldo(user_id: str) -> float:
     # dan jelaskan keputusan ini di README.md.
     if user_id not in saldo_user: 
         time.sleep(3)
-        print (f"{user_id} tidak ditemukan")
-        return 0 
+        raise ValueError(f"User {user_id} tidak ditemukan")
 
     time.sleep(3)
     return saldo_user[user_id]
