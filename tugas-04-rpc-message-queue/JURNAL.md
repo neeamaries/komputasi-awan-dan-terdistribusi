@@ -9,7 +9,7 @@
 
 ## Uji "pesan tidak hilang" (khusus Jalur B)
 - Langkah uji: matikan consumer → jalankan publisher → nyalakan consumer
-- Hasil yang diamati: ...
+- Hasil yang diamati: Saat modul kurir (consumer) dimatikan, modul pembayaran (publisher) dijalankan 3 kali. Modul pembayaran mengirim 3 peson dengan total ada 9 pesan. Modul pembayaran selesai mengirim tanpa menunggu siapa pun dan kesembilan pesan tersimpan di antrean `pembayaran berhasil`. setelah modul kurir dinyalakan kembali, semua pesan diterima secara berurutan sampai antrean kosong. Saat modul pembayaran dijalankan sekali lagi ketika modul kurur sedang hidup, 3 pesan baru langsung diterima tanpa menumpuk.
 
 ## Log Penggunaan AI (Level 2)
 
