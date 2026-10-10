@@ -2,6 +2,23 @@
 
 **Materi terkait:** Remote Procedure Call (RPC), Message-Oriented Middleware (MOM)/Message Queue.
 
+**Kelompok:** [Kelompok 5]
+
+| Nama | NIM |
+|---|---|
+| [Bethari Nevyta Amaries] | [103072430016] |
+| [A'ilah Nailul Fa'izah] | [103072400042] |
+
+## Hasil Analisis
+
+## Jalur A: RPC (Sinkron)
+
+## Jalur B: Message Queue (Asinkron)
+
+## Analisis Pemilihan Pola Komunikasi
+
+
+
 ## Studi Kasus
 
 Modul **Pembayaran** dan modul **Pesanan** FoodGo harus berkomunikasi secara reliabel. Untuk beberapa operasi (mis. cek status saldo) respons dibutuhkan **seketika** (sinkron). Untuk operasi lain (mis. kirim notifikasi "pembayaran berhasil" ke modul kurir) sistem **tidak boleh menunggu** — modul pembayaran harus tetap responsif walau modul kurir sedang sibuk/down (asinkron).
