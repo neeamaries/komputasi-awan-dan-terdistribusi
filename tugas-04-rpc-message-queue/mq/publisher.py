@@ -46,6 +46,5 @@ def main():
     connection.close()
     print("Publisher selesai mengirim event.")
 
-
 if __name__ == "__main__":
     main()
