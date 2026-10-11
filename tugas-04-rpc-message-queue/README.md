@@ -11,33 +11,31 @@
 
 ## Hasil Analisis
 ### Jalur A: RPC (Sinkron)
-- Bukti Client Menunggu
-Server diberi jeda 3 detik agar terlihat bahwa client benar-benar menunggu jawaban dari server. Pada terminal client, waktu tunggu saat melakukan pengecekan saldo tercatat sekitar 5,03 - 5,06 detik. Selama proses tersebut berjalan, client tidak langsung melanjutkan ke langkah berikutnya namun menunggu respon dari server baru melanjutkan ke proses pembayaran. 
+- **Bukti Client Menunggu** 
+Server diberi jeda 3 detik agar terlihat bahwa client benar-benar menunggu jawaban dari server. Pada terminal client, waktu tunggu saat melakukan pengecekan saldo tercatat sekitar 5,03 - 5,06 detik. Selama proses tersebut berjalan, client tidak langsung melanjutkan ke langkah berikutnya namun menunggu respon dari server baru melanjutkan ke proses pembayaran. Waktu yang yang tercatat lebih lama dibandingkan time.sleep yang diberikan karena waktu tersebut juga menghitung waktu komunikasi RPC dan proses lainnya selama fungsi tersebut berjalan. 
 
-Waktu yang yang tercatat lebih lama dibandingkan time.sleep yang diberikan karena waktu tersebut juga menghitung waktu komunikasi RPC dan proses lainnya selama fungsi tersebut berjalan. 
-
-- Keputusan: user tidak ditemukan
+- **Keputusan**: user tidak ditemukan
 Pada percobaan pertama, nilai 0 digunakan untuk menandakan bahwa user id tidak ditemukan. Namun, berdasarkan hasil analisis kami hal tersebut membuat client tidak dapat membedakan akun yang tidak ditemukan dengan akun yang benar - benar memiliki saldo 0. Oleh karena itu, pada user id yang tidak ditemukan kami mengembalikan error agar client dapat membedakan kedua kondisi tersebut. 
 
 ### Jalur B: Message Queue (Asinkron)
-- Hasil Pengujian 
+- **Hasil Pengujian** 
 Publisher mengirim pesan berisi data user, jumlah pembayaran, dan waktu ke antrean `pembayaran_berhasil`. Kemudian pada modul consumer menerima dan memproses pesan satu per satu sesuai dengan urutan antrean. Setelah seluruh antrean selesai diproses, modul consumer akan memberikan acknowledgement (ACK) ke RabbitMQ sebagai tanda bahwa pesan sudah selesai diproses. 
 
-- Uji "pesan tidak hilang"
+- **Uji "pesan tidak hilang"**
 Pengujian dilakukan dengan menjalankan modul publisher sebanyak 3 kali, yang dimana pada setiap run-nya mengirimkan 3 pesan. Ketika modul consumer dimatikan terlebih dahulu, pesan yang dikirimkan tersimpan di antrean `pembayaran_berhasil` yang berstatus Ready sebanyak 9. Kemudian setelah modul consumer dijalankan, seluruh pesan yang ada di antrean akan diproses sesuai urutan dan antrean akan menjadi kosong kembali. Pada saat modul publisher dijalankan kembali ketika modul consumer sedang berjalan, seluruh pesan yang baru masuk ke antrean akan langsung diproses oleh modul consumer sehingga antrean tetap kosong. 
 
 ### Analisis Pemilihan Pola Komunikasi
-- Kenapa RPC cocok untuk Pesanan ke Pembayaran
+#### Kenapa RPC cocok untuk Pesanan ke Pembayaran
 Karena membutuhkan jawaban pada saat itu juga. Sebelum pesanan dilanjutkan atau dibatalkan, sistem harus memastikan dulu uang pembeli cukup. Kalau belum bayar atau uangnya kurrang, pesanan tidak boleh dilanjutkan.
 
-- Kenapa MQ cocok untuk Pembayaran ke Kurir
+#### Kenapa MQ cocok untuk Pembayaran ke Kurir
 Karena bagian ini hanya kabar satu arah. Pembeli sudah selesai membyara, jadi pembyaran tidak perlu menunggu kurir siap atau membuka aplikasinya. Kabar pesanan cukup dititipkan di antrean supaya kurir bisa membacanya kapan pun sedang aktif.
 
-- Apa yang terjadi kalau dipakai di skenario yang salah
+#### Apa yang terjadi kalau dipakai di skenario yang salah
 - Jika Message Queue dipakai untuk Pesanan ke Pembayarran, alur belanja jadi membingungkan. pembeli harus menunggu tanpa kejelasan apakah transaksinya diterima atau ditolak, karena pesanan dikirim tanpa langsung meminta jawaban soal saldo.
 - JIka RPC dipakai untuk pembayaran ke kurir, kedua modul bisa jadi saling bergantung. Kalau kurir sedang susah sinyal, aplikasinya mati, atau lambat merespon, proses pembayaran pembeli ikut macet dan tertahan, padahal uangnya sudah siap dipotong
 
-- Trade-off
+#### Trade-off
 - RPC : Mudah dipahami dan hasilnya langsung didapat saat itu juga, tetapi kalau pihak penerima lambat atau bermasalah, pihak pengirim juga ikut terjebak menunggu.
 - Message Queue : Fleksible dan aman karena pengirim bisa langsugn lanjut bekerja tanpa takut pesan hilang saat penerima sedang tidak aktif, tetapi butuh perantara tambahan dan kita tidak langsung tau kapan pesan itu selesai dikerjakan.
 
