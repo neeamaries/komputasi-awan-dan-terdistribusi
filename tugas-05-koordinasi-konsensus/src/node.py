@@ -26,6 +26,7 @@ class Node:
         self.peers = peers
         self.leader_id = None
         self.lock = threading.Lock()
+        self.ok_event = threading.Event()
 
     # ---------- Infrastruktur jaringan (SUDAH LENGKAP, jangan diubah) ----------
 
@@ -68,7 +69,7 @@ class Node:
         #     kita TIDAK boleh mendeklarasikan diri sebagai leader.
         #   - "COORDINATOR": simpan sender_id sebagai leader_id yang baru.
         print(f"[Node {self.node_id}] Menerima pesan '{msg_type}' dari node {sender_id} (TODO: proses ini)")
-        
+
         if msg_type == "ELECTION":
             if self.node_id > sender_id:
                 sender_port = self.peers.get(sender_id)
