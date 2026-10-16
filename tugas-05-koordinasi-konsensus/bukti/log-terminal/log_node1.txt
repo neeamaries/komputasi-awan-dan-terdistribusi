@@ -1,0 +1,107 @@
+[Node 1] Listening di port 5001
+[Node 1] TODO: mulai election ke peer lebih tinggi: {2: 5002, 3: 5003, 4: 5004, 5: 5005}
+[Node 1] Election terkirim ke node 2
+[Node 1] Menerima pesan 'OK' dari node 2 (TODO: proses ini)
+[Node 1] Election terkirim ke node 3
+[Node 1] Election terkirim ke node 4
+[Node 1] Menerima pesan 'OK' dari node 3 (TODO: proses ini)
+[Node 1] Menerima pesan 'OK' dari node 4 (TODO: proses ini)
+[Node 1] Election terkirim ke node 5
+[Node 1] Menerima OK, menunggu COORDINATOR
+[Node 1] Menerima pesan 'OK' dari node 5 (TODO: proses ini)
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Menerima pesan 'COORDINATOR' dari node 5 (TODO: proses ini)
+[Node 1] Leader baru adalah node 5
+[Node 1] Leader Node 5 tidak merespons!
+[Node 1] TODO: mulai election ke peer lebih tinggi: {2: 5002, 3: 5003, 4: 5004, 5: 5005}
+[Node 1] Election terkirim ke node 2
+[Node 1] Election terkirim ke node 3
+[Node 1] Menerima pesan 'OK' dari node 2 (TODO: proses ini)
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'OK' dari node 3 (TODO: proses ini)
+[Node 1] Election terkirim ke node 4
+[Node 1] Menerima pesan 'OK' dari node 4 (TODO: proses ini)
+[Node 1] Node 5 tidak merespons
+[Node 1] Menerima OK, menunggu COORDINATOR
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Menerima pesan 'COORDINATOR' dari node 4 (TODO: proses ini)
+[Node 1] Leader baru adalah node 4
+[Node 1] Leader Node 4 tidak merespons!
+[Node 1] TODO: mulai election ke peer lebih tinggi: {2: 5002, 3: 5003, 4: 5004, 5: 5005}
+[Node 1] Election terkirim ke node 2
+[Node 1] Election terkirim ke node 3
+[Node 1] Menerima pesan 'OK' dari node 2 (TODO: proses ini)
+[Node 1] Menerima pesan 'OK' dari node 3 (TODO: proses ini)
+[Node 1] Menerima pesan 'COORDINATOR' dari node 3 (TODO: proses ini)
+[Node 1] Leader baru adalah node 3
+[Node 1] Menerima pesan 'COORDINATOR' dari node 3 (TODO: proses ini)
+[Node 1] Leader baru adalah node 3
+[Node 1] Node 4 tidak merespons
+[Node 1] Node 5 tidak merespons
+[Node 1] Menerima OK, menunggu COORDINATOR
+[Node 1] Menerima pesan 'COORDINATOR' dari node 3 (TODO: proses ini)
+[Node 1] Leader baru adalah node 3
+[Node 1] Menerima pesan 'COORDINATOR' dari node 3 (TODO: proses ini)
+[Node 1] Leader baru adalah node 3
+[Node 1] Leader Node 3 tidak merespons!
+[Node 1] TODO: mulai election ke peer lebih tinggi: {2: 5002, 3: 5003, 4: 5004, 5: 5005}
+[Node 1] Election terkirim ke node 2
+[Node 1] Menerima pesan 'OK' dari node 2 (TODO: proses ini)
+[Node 1] Node 3 tidak merespons
+[Node 1] Node 4 tidak merespons
+[Node 1] Node 5 tidak merespons
+[Node 1] Menerima OK, menunggu COORDINATOR
+[Node 1] Menerima pesan 'COORDINATOR' dari node 2 (TODO: proses ini)
+[Node 1] Leader baru adalah node 2
+[Node 1] Leader Node 2 tidak merespons!
+[Node 1] TODO: mulai election ke peer lebih tinggi: {2: 5002, 3: 5003, 4: 5004, 5: 5005}
+[Node 1] Node 2 tidak merespons
+[Node 1] Node 3 tidak merespons
+Traceback (most recent call last):
+  File "D:\Documents\telkom\Semester 5\Komputasi awan\komputasi-awan-dan-terdistribusi\tugas-05-koordinasi-konsensus\src\node.py", line 194, in <module>
+    main()
+  File "D:\Documents\telkom\Semester 5\Komputasi awan\komputasi-awan-dan-terdistribusi\tugas-05-koordinasi-konsensus\src\node.py", line 190, in main
+    time.sleep(60)
+KeyboardInterrupt
+^C
