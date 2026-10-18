@@ -2,6 +2,13 @@
 
 **Materi terkait:** Physical/Logical Clock, Election Algorithm (Bully/Raft).
 
+**Kelompok:** [Kelompok 5]
+
+| Nama | NIM |
+|---|---|
+| [Bethari Nevyta Amaries] | [103072430016] |
+| [A'ilah Nailul Fa'izah] | [103072400042] |
+
 ## Studi Kasus
 
 Terjadi konflik urutan waktu pada pesanan FoodGo (dua server mencatat urutan pesanan berbeda karena jam tidak sinkron), dan sistem membutuhkan satu **"Node Leader"** untuk mengelola antrean pesanan pusat agar tidak terjadi konflik pemrosesan ganda.
