@@ -2,7 +2,7 @@
 
 ## Implementasi Bully
 - Kendala saat mengisi TODO 1-2 : Kendala yang dihadapi saat mengisi TODO 1 dan 2 adalah dalam memahami alur pengiriman pesan dan memastikan bahwa setiap node dapat menentukan leader berdasarkan ID tertinggi yang masih aktif. Selain itu, diperlukan juga pengujian berulang agar hasil dapat berjalan sesuai skenario yang diinginkan ketika leader berhenti. 
-- Kendala saat mengisi TODO 3-4 : 
+- Kendala saat mengisi TODO 3-4 : Pada TODO 3, kendalanya adalah memastikan `COORDINATOR` dikirim ke seluruh node, bukan hanya node yang lebih besar, dan tetap berjalan meskipun ada node yang sudah mati. Pada TODO 4, kendalanya adalah menentukan kapan pemilihan baru perlu dimulai agar tidak muncul pemilihan yang tidak perlu. Selain itu, pemilihan yang berjalan bersamaan membuat pesan `ELECTION` dan `COORDINATOR` terkirim berulang sehingga log sulit dibaca.
 
 ## Skenario 1: Start normal
 - Leader yang terpilih: Node 5 
@@ -21,4 +21,4 @@
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
 | 15 Oktober 2026 | ChatGPT | Membantu memahami TODO 1–4 pada implementasi Bully Algorithm | Menjelaskan fungsi pesan ELECTION, OK, dan COORDINATOR, serta proses pemilihan leader berdasarkan ID node tertinggi yang masih aktif. | Menggunakan penjelasan untuk memahami alur algoritma, kemudian menerapkannya pada bagian TODO di kode yang telah disediakan. |
-| ... | ... | ... | ... | ... |
+| 16 Oktober 2026 | Gemini | Jelaskan perbandingan antara Bully Algorithm dan Raft consensus algorithm secara konsep, terutama kelebihan dan kelemahannya untuk laporan sistem terdistribusi | Menjelaskan perbedaan mekanisme pemilihan, penanganan split-brain, efisiensi pesan, dan alasan mengapa Raft lebih modern serta aman untuk produksi dibanding Bully. | Menyusun ulang poin-poin penjelasan tersebut untuk mengisi sub-bab analisis perbandingan algoritma pada laporan. |
