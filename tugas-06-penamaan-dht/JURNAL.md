@@ -17,4 +17,4 @@
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
 | 28 Okt 2026 | Gemini | Melampirkan slide materi Chapter 06 (Naming) dan deskripsi Tugas 6, lalu meminta penjelasan mengenai maksud tugas dan kaitannya dengan materi kuliah. | AI memberikan penjelasan konsep dasar *Consistent Hashing*, aturan *successor* ($\text{succ}(k)$) pada Chord DHT, alur logika saat node *join*/*leave*, serta poin-poin kelemahan *Flat Naming* dan DNS konvensional untuk entitas yang sering berpindah lokasi (*mobile entities*). | Memakai pemahaman konsep tersebut untuk mengerjakan tugas, serta menyusun kalimat analisis mandiri dan diagram topologi sesuai hasil output program kelompok kami. |
-| ... | ... | ... | ... | ... |
+| 28 Okt 2026 | ChatGPT | Menanyakan Tugas 6 dan konsep Chord DHT | AI menjelaskan consistent hashing, ring, aturan successor (termasuk wrap-around), serta join dan leave dengan contoh angka | Konsep dipakai sebagai bekal sebelum mengisi TODO | 
