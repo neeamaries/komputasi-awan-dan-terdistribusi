@@ -14,10 +14,43 @@
 Pelanggan FoodGo kesulitan menemukan alamat IP server kurir yang **dinamis** (kurir berpindah lokasi/jaringan, IP-nya sering berubah). FoodGo butuh cara memetakan **ID Kurir** (identitas tetap) ke **alamat IP terkininya** tanpa server pusat tunggal yang jadi bottleneck/single point of failure.
 
 ## Penjelasan DHT/Chord vs. flat naming dan DNS
+Flat naming menggunakan ID yang tidak menunjukkan lokasi kurir, seperti kurir-001, sehingga diperlukan sistem untuk mencari alamat IP yang sesuai. Jika hanya menggunakan satu server pusat, pencarian bisa terganggu ketika server bermasalah atau menerima terlalu banyak permintaan. DHT (Distributed Hash Table) mengatasi hal ini dengan membagi penyimpanan data ke beberapa komputer. Chord merupakan salah satu penerapan DHT yang menyimpan data berdasarkan hasil hash dalam bentuk lingkaran atau ring. Pada simulasi ini, ID berada pada rentang 0 sampai 255 (M_BITS = 8). Setiap key (ID kurir) disimpan pada node successor-nya, yaitu node pertama yang ID-nya lebih besar atau sama dengan hash key tersebut. Jika tidak ada node yang memenuhi syarat itu, pencarian kembali ke node dengan ID terkecil (wrap-around). Ketika node bergabung atau keluar, hanya key di sekitar node itu yang dialihkan ke node lain. Simulasi ini menggunakan daftar node terurut agar proses pencarian lebih sederhana, sedangkan Chord asli memakai finger table.
+
+DNS menggunakan nama bertingkat, seperti id.co.foodgo.com, dan dilayani server dengan hierarki root, TLD, dan authoritative. Sementara itu, Chord membagi data ke banyak node yang setara tanpa bergantung pada satu server pusat. Untuk skenario FoodGo, Chord cocok dipertimbangkan karena alamat IP kurir bisa berubah dan jumlah kurir dapat bertambah. Dengan begitu, beban pencarian terbagi dan data tetap bisa ditemukan ketika salah satu node mengalami gangguan.
 
 ## Diagram ring topology
+```mermaid
+flowchart LR
+    B["Node Bandung<br/>ID: 40<br/>IP: 10.0.0.3"]
+    J2["Node Jakarta-2<br/>ID: 102<br/>IP: 10.0.0.2"]
+    M["Node Medan<br/>ID: 123<br/>IP: 10.0.0.5<br/>(Bergabung)"]
+    S["Node Surabaya<br/>ID: 136<br/>IP: 10.0.0.4"]
+    J1["Node Jakarta-1<br/>ID: 177<br/>IP: 10.0.0.1"]
 
-## Penjelasan node keluar dan bukti output
+    B -->|Successor| J2
+    J2 -->|Successor| M
+    M -->|Successor| S
+    S -->|Successor| J1
+    J1 -->|Wrap-around| B
+
+    K2(["kurir-002<br/>Hash: 28<br/>IP: 192.168.1.11"])
+    K1(["kurir-001<br/>Hash: 50<br/>IP: 192.168.1.10"])
+    K3(["kurir-003<br/>Hash: 132<br/>IP: 192.168.1.12"])
+
+    K2 -.-> B
+    K1 -.-> J2
+    K3 -.-> S
+
+    classDef node fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:2px
+    classDef joined fill:#dcfce7,stroke:#16a34a,color:#14532d,stroke-width:2px
+    classDef courier fill:#fef3c7,stroke:#d97706,color:#78350f,stroke-width:1.5px
+
+    class B,J2,S,J1 node
+    class M joined
+    class K1,K2,K3 courier
+```
+## Penjelasan node keluar
+Saat sebuah node keluar melalui `leave()`, program mencari key yang dipegang node tersebut, menghapusnya dari ring, lalu memindahkan key itu ke successor barunya. Perpindahan ini ditampilkan melalui log `[TRANSFER LEAVE]`. Pada output di bawah, node-medan-1 (ID 123) bergabung tanpa memindahkan data karena tidak ada key yang menjadi tanggung jawabnya, dan node-jakarta-1 (ID 177) keluar tanpa perpindahan karena memang tidak menyimpan key apa pun. Perpindahan baru terjadi saat node-bandung-1 (ID 40) keluar, karena node ini menyimpan key 28 milik `kurir-002`. Key tersebut dialihkan ke node-jakarta-2 (ID 102), dan `lookup("kurir-002")` tetap mengembalikan IP `192.168.1.11`. Artinya data kurir tetap dapat ditemukan meskipun node yang menyimpannya keluar dari ring.
 
 ## Tugas Kelompok
 
