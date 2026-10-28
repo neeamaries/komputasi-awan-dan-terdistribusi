@@ -49,6 +49,7 @@ flowchart LR
     class M joined
     class K1,K2,K3 courier
 ```
+
 ## Penjelasan node keluar
 Saat sebuah node keluar melalui `leave()`, program mencari key yang dipegang node tersebut, menghapusnya dari ring, lalu memindahkan key itu ke successor barunya. Perpindahan ini ditampilkan melalui log `[TRANSFER LEAVE]`. Pada output di bawah, node-medan-1 (ID 123) bergabung tanpa memindahkan data karena tidak ada key yang menjadi tanggung jawabnya, dan node-jakarta-1 (ID 177) keluar tanpa perpindahan karena memang tidak menyimpan key apa pun. Perpindahan baru terjadi saat node-bandung-1 (ID 40) keluar, karena node ini menyimpan key 28 milik `kurir-002`. Key tersebut dialihkan ke node-jakarta-2 (ID 102), dan `lookup("kurir-002")` tetap mengembalikan IP `192.168.1.11`. Artinya data kurir tetap dapat ditemukan meskipun node yang menyimpannya keluar dari ring.
 
