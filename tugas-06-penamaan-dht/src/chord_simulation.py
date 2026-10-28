@@ -24,6 +24,7 @@ class ChordRing:
         # key kurir (hasil hash) -> IP kurir yang disimpan node yang bertanggung jawab
         self.data: dict[int, tuple[str, str]] = {}  # hash -> (kurir_id, ip_kurir)
 
+
     def join(self, node_name: str, node_ip: str):
         """Tambahkan node baru ke ring. Pindahkan data yang seharusnya
         menjadi tanggung jawab node baru ini dari successor lamanya."""
@@ -65,6 +66,7 @@ class ChordRing:
         print(f"[JOIN] Node {node_name} masuk dengan ID {node_id}")
         print(f"[TODO] Node '{node_name}' (id={node_id}) bergabung, alamat {node_ip}")
 
+
     def leave(self, node_name: str):
         """Keluarkan sebuah node dari ring. Data yang dipegangnya harus
         berpindah ke successor-nya."""
@@ -82,7 +84,7 @@ class ChordRing:
                 owned_keys.append(key_hash)
 
         del self.nodes[node_id]
-        
+
         # TODO 5: cari successor BARU untuk tiap key yang tadinya dipegang
         # node ini, pindahkan ke successor tersebut.
 
@@ -101,6 +103,7 @@ class ChordRing:
 
         print(f"[LEAVE] Node {node_name} dengan ID {node_id} keluar")
         print(f"[TODO] Node '{node_name}' (id={node_id}) keluar dari ring")
+
         
     def find_successor(self, key_hash: int) -> int:
         """Cari node_id dengan nilai hash TERKECIL yang >= key_hash
@@ -121,6 +124,7 @@ class ChordRing:
         # Jika tidak ditemukan, kembali ke node dengan ID terkecil.
         return node_ids[0]
 
+
     def register_kurir(self, kurir_id: str, ip_kurir: str):
         """Simpan mapping ID Kurir -> IP di node yang bertanggung jawab."""
         key_hash = hash_id(kurir_id)
@@ -134,6 +138,7 @@ class ChordRing:
             f"[REGISTER] Kurir {kurir_id} dengan hash {key_hash} "
             f"terdaftar pada node {node_id}"
         )
+
 
     def lookup(self, kurir_id: str) -> str | None:
         """Cari alamat IP terkini untuk sebuah ID Kurir."""
@@ -160,8 +165,6 @@ class ChordRing:
         
         return ip_kurir
         
-        
-
 
 def main():
     ring = ChordRing()
@@ -188,6 +191,10 @@ def main():
     print("\n--- Sebuah node keluar ---")
     ring.leave("node-jakarta-1")
     print("kurir-001 ->", ring.lookup("kurir-001"))
+    print("kurir-002 ->", ring.lookup("kurir-002"))
+
+    print("\n--- Pengujian perpindahan mapping ---")
+    ring.leave("node-bandung-1")
     print("kurir-002 ->", ring.lookup("kurir-002"))
 
 
