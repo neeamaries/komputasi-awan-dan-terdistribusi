@@ -1,0 +1,38 @@
+[JOIN] Node node-jakarta-1 masuk dengan ID 177
+[TODO] Node 'node-jakarta-1' (id=177) bergabung, alamat 10.0.0.1
+[JOIN] Node node-jakarta-2 masuk dengan ID 102
+[TODO] Node 'node-jakarta-2' (id=102) bergabung, alamat 10.0.0.2
+[JOIN] Node node-bandung-1 masuk dengan ID 40
+[TODO] Node 'node-bandung-1' (id=40) bergabung, alamat 10.0.0.3
+[JOIN] Node node-surabaya-1 masuk dengan ID 136
+[TODO] Node 'node-surabaya-1' (id=136) bergabung, alamat 10.0.0.4
+[REGISTER] Kurir kurir-001 dengan hash 50 terdaftar pada node 102
+[REGISTER] Kurir kurir-002 dengan hash 28 terdaftar pada node 40
+[REGISTER] Kurir kurir-003 dengan hash 132 terdaftar pada node 136
+
+--- Lookup sebelum perubahan topologi ---
+[LOOKUP] Kurir kurir-001 dengan hash 50 ditemukan melalui node 102: 192.168.1.10
+kurir-001 -> 192.168.1.10
+[LOOKUP] Kurir kurir-002 dengan hash 28 ditemukan melalui node 40: 192.168.1.11
+kurir-002 -> 192.168.1.11
+
+--- Node baru bergabung ---
+[JOIN] Node node-medan-1 masuk dengan ID 123
+[TODO] Node 'node-medan-1' (id=123) bergabung, alamat 10.0.0.5
+[LOOKUP] Kurir kurir-001 dengan hash 50 ditemukan melalui node 102: 192.168.1.10
+kurir-001 -> 192.168.1.10
+
+--- Sebuah node keluar ---
+[LEAVE] Node node-jakarta-1 dengan ID 177 keluar
+[TODO] Node 'node-jakarta-1' (id=177) keluar dari ring
+[LOOKUP] Kurir kurir-001 dengan hash 50 ditemukan melalui node 102: 192.168.1.10
+kurir-001 -> 192.168.1.10
+[LOOKUP] Kurir kurir-002 dengan hash 28 ditemukan melalui node 40: 192.168.1.11
+kurir-002 -> 192.168.1.11
+
+--- Pengujian perpindahan mapping ---
+[TRANSFER LEAVE] Key 28 (kurir-002) dipindahkan dari node 40 ke node 102
+[LEAVE] Node node-bandung-1 dengan ID 40 keluar
+[TODO] Node 'node-bandung-1' (id=40) keluar dari ring
+[LOOKUP] Kurir kurir-002 dengan hash 28 ditemukan melalui node 102: 192.168.1.11
+kurir-002 -> 192.168.1.11
