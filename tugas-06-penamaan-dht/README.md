@@ -2,9 +2,22 @@
 
 **Materi terkait:** Flat Naming, Structured Naming (DNS), Distributed Hash Table (DHT)/Chord.
 
+**Kelompok:** [Kelompok 5]
+
+| Nama | NIM |
+|---|---|
+| [Bethari Nevyta Amaries] | [103072430016] |
+| [A'ilah Nailul Fa'izah] | [103072400042] |
+
 ## Studi Kasus
 
 Pelanggan FoodGo kesulitan menemukan alamat IP server kurir yang **dinamis** (kurir berpindah lokasi/jaringan, IP-nya sering berubah). FoodGo butuh cara memetakan **ID Kurir** (identitas tetap) ke **alamat IP terkininya** tanpa server pusat tunggal yang jadi bottleneck/single point of failure.
+
+## Penjelasan DHT/Chord vs. flat naming dan DNS
+
+## Diagram ring topology
+
+## Penjelasan node keluar dan bukti output
 
 ## Tugas Kelompok
 
