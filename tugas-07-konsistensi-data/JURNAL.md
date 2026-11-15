@@ -14,4 +14,5 @@
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
+| 15 November 2026 | Claude | Membantu memahami perbedaan Sequential Consistency, Eventual Consistency, dan Client-Centric Consistency (Read-Your-Writes) | AI menjelaskan masalah replikasi, perbedaan model data-centric dan client-centric| Dipakai sebagai pengetahuan pribadi diskusi kelompok untuk menentukan model konsistensi |
 | ... | ... | ... | ... | ... |
