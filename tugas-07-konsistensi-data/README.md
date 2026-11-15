@@ -10,7 +10,6 @@
 | [A'ilah Nailul Fa'izah] | [103072400042] |
 
 ## Studi Kasus
-
 Data saldo *e-wallet* pelanggan FoodGo berbeda antara server wilayah **Jakarta** dan **Bandung** karena replikasi antar server berjalan lambat. Contoh kasus nyata: pelanggan top-up saldo lewat server Jakarta, lalu dalam hitungan detik memesan makanan lewat aplikasi yang tersambung ke server Bandung — saldo belum ter-update, transaksi ditolak padahal saldo sebenarnya cukup.
 
 ## Pemilihan Model Konsistensi
