@@ -10,7 +10,6 @@ import threading
 
 REPLICATION_DELAY = 2.0  # detik, simulasi lambatnya sinkronisasi antar server
 
-
 class Replica:
     def __init__(self, name: str):
         self.name = name
