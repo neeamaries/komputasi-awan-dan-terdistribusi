@@ -4,12 +4,44 @@
 
 **Kelompok:** [Kelompok 5]
 | Nama | NIM |
+| --- | --- |
 | Bethari Nevyta Amaries | 103072430016 |
-| Bethari Nevyta Amaries | 103072430016 |
+| Raja | 103072430016 |
+| Fathir Al Farih | 103072400002 |
 
-## Ringkasan Rekomendasi
+# Ringkasan Rekomendasi
 ## 1. Rekomendasi Deployment Model
+Rekomendasi: Hybrid Cloud.
+
+- Private cloud (dikendalikan penuh negara) database inti (NIK, nama, alamat, biometrik), layanan verifikasi, manajemen kunci enkripsi, logging, dan backup/DR.
+- Public cloud hanya lapisan stateless yang tidak menyimpan data sensitif, yaitu portal publik cek status dan penyangga lonjakan trafik (cloud bursting).
+- Karena penggunanya ribuan instansi, segmen private dapat dirancang sebagai cloud bersama antarinstansi (mirip Community Cloud), tetapi tetap di bawah kendali negara.
+
+Analisis berdasarkan 5 karakteristik NIST:
+
+| Karakteristik | Penerapan | Kaitan kerahasiaan vs skalabilitas |
+|---|---|---|
+| On-demand self-service | Tiap instansi (dukcapil daerah, kepolisian, bank) bisa mendaftarkan akses/API key dan menyediakan sumber daya lewat portal layanan tanpa menunggu tim pusat. | Self-service dibatasi RBAC dan persetujuan berjenjang, jadi kemudahan tidak membuka akses ke data yang bukan hak instansi tersebut. |
+| Broad network access | Instansi mengakses lewat API standar (HTTPS/mTLS) dari seluruh Indonesia, dan warga mengakses portal dari perangkat apa pun. | Akses luas hanya di lapisan depan (gateway/portal). Data inti tidak diekspos ke internet, hanya lewat jaringan privat/VPN pemerintah. |
+| Resource pooling | Pool di private cloud dipakai bersama banyak instansi (multi-tenant), sedangkan pool di public cloud dipakai untuk portal. | Pooling data sensitif hanya terjadi di infrastruktur negara, dengan isolasi tenant dan enkripsi per tenant. Public cloud tidak menyentuh data sensitif. |
+| Rapid elasticity | Saat pemilu atau pendaftaran sekolah, portal dan API stateless otomatis diperluas ke public cloud, lalu dikecilkan lagi setelah lonjakan selesai. | Adalah alasan utama memilih Hybrid, yaitu private cloud tidak perlu dibangun untuk beban puncak yang mahal dan sering menganggur, sementara data tetap aman di private. |
+| Measured service | Pemakaian per instansi (request, storage, bandwidth) diukur dan dipantau. | Metering sekaligus menjadi jejak audit (siapa mengakses data siapa, kapan) untuk kepatuhan UU PDP, serta dasar alokasi biaya per instansi. |
+
+
 ## 2. Rekomendasi Service Model (per komponen)
+
+| Komponen | Service Model | Lokasi | Alasan |
+|---|---|---|---|
+| Database inti (NIK, alamat, biometrik) | IaaS | Private | Butuh kendali penuh atas OS, konfigurasi database, enkripsi at-rest, manajemen kunci (HSM/KMS milik negara), dan lokasi fisik data. |
+| Layanan verifikasi & pencocokan biometrik | PaaS (container/Kubernetes) | Private | Tim fokus ke logika aplikasi, sedangkan platform mengurus deployment dan scaling. Data biometrik tetap diproses di private. |
+| API gateway & autentikasi instansi | PaaS | Private, gateway tambahan di public saat lonjakan | Mengelola ribuan klien instansi, kuota, dan otorisasi, dengan kebijakan keamanan yang konsisten. |
+| Portal publik cek status | PaaS | Public | Aplikasi paling terdampak lonjakan, cocok dengan auto-scaling. Hanya menampilkan status minimal lewat API ke private, tanpa menyimpan NIK lengkap atau biometrik. |
+| Backup, DR, arsip terenkripsi | IaaS | Private (situs DR terpisah milik negara) | Perlu kendali atas replikasi, retensi, dan enkripsi, dan data tidak boleh keluar dari kendali negara. |
+| Logging, monitoring, audit akses | IaaS/PaaS | Private | Log akses sendiri sensitif (memuat siapa mengakses siapa), jadi tidak diserahkan ke pihak luar. |
+| Aplikasi pendukung non-sensitif (email dinas, kolaborasi, helpdesk) | SaaS | Public | Tidak memuat data kependudukan, jadi layanan siap pakai lebih cepat dan murah. |
+
+Pada IaaS dan PaaS, tanggung jawab keamanan bersifat bersama (shared responsibility). Karena berada di private cloud negara, keamanan infrastruktur menjadi tanggung jawab operator negara sendiri, sedangkan keamanan aplikasi dan data tetap tanggung jawab tim pengembang.
+
 ## 3. Risiko dan Mitigasi
 ## 4. Alternatif yang Ditolak
 
