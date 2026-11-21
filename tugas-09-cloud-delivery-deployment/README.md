@@ -6,7 +6,7 @@
 | Nama | NIM |
 | --- | --- |
 | Bethari Nevyta Amaries | 103072430016 |
-| Raja | 103072430016 |
+| Andi Athallah Radja Maliq Muhammad | 103072430016 |
 | Fathir Al Farih | 103072400002 |
 
 # Ringkasan Rekomendasi
@@ -43,6 +43,16 @@ Analisis berdasarkan 5 karakteristik NIST:
 Pada IaaS dan PaaS, tanggung jawab keamanan bersifat bersama (shared responsibility). Karena berada di private cloud negara, keamanan infrastruktur menjadi tanggung jawab operator negara sendiri, sedangkan keamanan aplikasi dan data tetap tanggung jawab tim pengembang.
 
 ## 3. Risiko dan Mitigasi
+Penggunaan Hybrid Cloud pada sistem data kependudukan memiliki beberapa risiko tersendiri yang perlu diperhatikan. Yang dimana pemisahan infrastruktur antara private dan public cloud dapat meningkatkan fleksibilitas dan skalabilitas, namun hal tersebut juga dapat menimbulkan tantangan dalam menjaga keamanan dan konsistensi dari data. 
+| No | Risiko | Dampak | Mitigasi |
+|---|---|---|---|
+|1|Ketidaksinkronan data antara private cloud dan public cloud|Warga dapat menerima informasi status yang tidak sesuai dengan kondisi yang sebenarnya. 
+Contoh : perubahan status data kependudukan sudah tercatat pada database utama, namun pada portal publik masih menampilkan data lama. Hal tersebut dapat menyebabkan kesalahan dalam proses verifikasi. |Menjadikan databse pada private cloud sebagai single source of truth. Yang dimana public cloud nantinya akan mengambil data yang diperlukan melalui API yang telah diamankan. Selain itu, penerapan mekanisme sinkronisasi yang terjadwal atau berbasis event, validasi data, dan pencatatan waktu secara berkala agar data dapat segera diperbarui.|
+|2|Kebocoran data pribadi dan biometrik|Data pribadi seperti NIK, alamat, dan biometrik dapat disalahgunakan. Yang dimana apabila terjadi kebocoran akan sulit untuk ditangani karena berbeda dengan kata sandi yang dapat langsung diganti|Memastikan bahwa data sensitif tetap disimpan pada private cloud. Kemudian untuk komunikasi antarlingkungan menggunakan enkripsi TLS/mTLS, autentikasi antar server, dan pembatasan akses dengan menggunakan RBAC. Selain itu, juga dapat mengimplementasikan tokenisasi atau penyamaran NIK pada respons API, dan melakukan audit secara berkala, serta menggunakan manajemen kunci enkripsi yang telah dikendalikan oleh negara.|
+|3|Terjadinya ketergantungan terhadap penyedia Public Cloud|Jika penyedia mengalami gangguan, mengubah harga layanan, ataupun menghentikan layanan tertentu, sistem akan mengalami kendala pada operasional. Hal tersebt mengakibatkan pemindahan layanan ke penyedia lain yang membutuhkan waktu dan biaya tambahan. |Menggunakan teknologi dan standar yang bersifat terbuka, seperti container dan Kubernetes sehingga splikasi dapat dipindahkan ke lingkungan lain dengan lebih mudah. Selain itu, menyiapkan dokumentasi, konfigurasi, backup, dan cara pemulihan layanan apabola penyedia mengalami gangguan.|
+
+Berdasarkan analisis risiko di atas didapatkan bahwa penerapan hybrid cloud perlu disertai dengan pengaturan keamanan dan pengelolaan data yang jelas. Private cloud tetap menjadi tempat penyimpanan dan pengelolaan data sensitif, namun public cloud digunakan untuk mendukung layanan yang membutuhkan akses luas dan kapasitas tambahan. Dengan demikian, fleksibilitas dari hybrid cloud tetap dapat dimanfaatkan tanpa perlu mengorbankan perlindungan data pribadi masyarakat. 
+
 ## 4. Alternatif yang Ditolak
 
 > Bagian 2 mata kuliah ini murni **analisis & desain di atas kertas** — tidak ada biaya cloud sama sekali, karena tugas berhenti di tahap rekomendasi, bukan implementasi nyata (implementasi baru mulai Tugas 11).
