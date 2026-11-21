@@ -53,7 +53,7 @@ Penggunaan Hybrid Cloud pada sistem data kependudukan memiliki beberapa risiko t
 Berdasarkan analisis risiko di atas didapatkan bahwa penerapan hybrid cloud perlu disertai dengan pengaturan keamanan dan pengelolaan data yang jelas. Private cloud tetap menjadi tempat penyimpanan dan pengelolaan data sensitif, namun public cloud digunakan untuk mendukung layanan yang membutuhkan akses luas dan kapasitas tambahan. Dengan demikian, fleksibilitas dari hybrid cloud tetap dapat dimanfaatkan tanpa perlu mengorbankan perlindungan data pribadi masyarakat. 
 
 ## 4. Alternatif yang Ditolak
-# Alternatif yang ditolak : Public Cloud Murni (Public Cloud Only) 
+### Alternatif yang ditolak : Public Cloud Murni (Public Cloud Only) 
 Model ini sebenarnya memiliki keunggulan pada sisi skalabilitas karena mampu menyediakan karakteristik resouce pooling dan rapid elasticity. Yang dimana kapasitas dari komputasi dan penyimpanan dapat ditingkatkan ataupun dikurangi sesuai dengan kebutuhan tanpa harus membangun seluruh infrastruktur secara mandiri. Selain itu, model ini juga memiliki karakteristik on demand self service yang dimana memungkinkan sumber data diseiakan secara cepat ketika terjadi lonjakan permintaan. 
 
 Namun, model ini tidak kami pilih karena masih kurang sesuai dengan kebutuhan pengendalian data kependudukan yang memiliki sifat sensitif. Data kependudukan yang dikelola sendiri merupakan NIK, alamat, dan biometrik yang dimana bergantung pada infrastuktur serta pengelolaan penyedia eksternal. Yang dimana hal tersebut mengurangi kendali langsung negara terhadap lokasi penyimpanan, pengelolaan, dan pengaman data. 
