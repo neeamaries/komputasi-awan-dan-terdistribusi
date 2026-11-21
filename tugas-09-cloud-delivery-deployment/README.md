@@ -2,6 +2,17 @@
 
 **Materi terkait:** Karakteristik esensial cloud computing (NIST SP 800-145), Deployment Model (Public/Private/Hybrid/Community), Service Model (IaaS/PaaS/SaaS).
 
+**Kelompok:** [Kelompok 5]
+| Nama | NIM |
+| Bethari Nevyta Amaries | 103072430016 |
+| Bethari Nevyta Amaries | 103072430016 |
+
+## Ringkasan Rekomendasi
+## 1. Rekomendasi Deployment Model
+## 2. Rekomendasi Service Model (per komponen)
+## 3. Risiko dan Mitigasi
+## 4. Alternatif yang Ditolak
+
 > Bagian 2 mata kuliah ini murni **analisis & desain di atas kertas** — tidak ada biaya cloud sama sekali, karena tugas berhenti di tahap rekomendasi, bukan implementasi nyata (implementasi baru mulai Tugas 11).
 
 ## Studi Kasus
