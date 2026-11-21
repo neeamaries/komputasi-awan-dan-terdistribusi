@@ -53,6 +53,15 @@ Penggunaan Hybrid Cloud pada sistem data kependudukan memiliki beberapa risiko t
 Berdasarkan analisis risiko di atas didapatkan bahwa penerapan hybrid cloud perlu disertai dengan pengaturan keamanan dan pengelolaan data yang jelas. Private cloud tetap menjadi tempat penyimpanan dan pengelolaan data sensitif, namun public cloud digunakan untuk mendukung layanan yang membutuhkan akses luas dan kapasitas tambahan. Dengan demikian, fleksibilitas dari hybrid cloud tetap dapat dimanfaatkan tanpa perlu mengorbankan perlindungan data pribadi masyarakat. 
 
 ## 4. Alternatif yang Ditolak
+# Alternatif yang ditolak : Public Cloud Murni (Public Cloud Only) 
+Model ini sebenarnya memiliki keunggulan pada sisi skalabilitas karena mampu menyediakan karakteristik resouce pooling dan rapid elasticity. Yang dimana kapasitas dari komputasi dan penyimpanan dapat ditingkatkan ataupun dikurangi sesuai dengan kebutuhan tanpa harus membangun seluruh infrastruktur secara mandiri. Selain itu, model ini juga memiliki karakteristik on demand self service yang dimana memungkinkan sumber data diseiakan secara cepat ketika terjadi lonjakan permintaan. 
+
+Namun, model ini tidak kami pilih karena masih kurang sesuai dengan kebutuhan pengendalian data kependudukan yang memiliki sifat sensitif. Data kependudukan yang dikelola sendiri merupakan NIK, alamat, dan biometrik yang dimana bergantung pada infrastuktur serta pengelolaan penyedia eksternal. Yang dimana hal tersebut mengurangi kendali langsung negara terhadap lokasi penyimpanan, pengelolaan, dan pengaman data. 
+
+Selain itu, dengan karakteristik resouce pooling pada public cloud memungkinkan infrastruktur digunakan bersama oleh berbagai pelanggan. Meskipun biasanya terdapat sistem isolasi antar pelanggan, namun pemerintah tetap perlu memastikan bahwa pengelolaan dan pemrosesan data sensitif memenuhi persyaratan kedaulatan data dan ketentuan perlindungan data pribadi yang ada. 
+
+Maka dari itu, public cloud murni tidak dipilih karena keunggulan yang diberikan tidak sebanding dengan kebutuhan dalam pengendalian secara penuh terdapat data kependudukan. Sebagai penggantinya, kami memutuskan untuk menggunakan hybrid cloud yang dimana menggabungkan kendali dari private cloud untuk data sesnsitif dan fleksibilitas dari public cloud untuk layanan yang membutuhkan skalabilitas tinggi. 
+
 
 > Bagian 2 mata kuliah ini murni **analisis & desain di atas kertas** — tidak ada biaya cloud sama sekali, karena tugas berhenti di tahap rekomendasi, bukan implementasi nyata (implementasi baru mulai Tugas 11).
 
