@@ -62,6 +62,18 @@ Selain itu, dengan karakteristik resouce pooling pada public cloud memungkinkan 
 
 Maka dari itu, public cloud murni tidak dipilih karena keunggulan yang diberikan tidak sebanding dengan kebutuhan dalam pengendalian secara penuh terdapat data kependudukan. Sebagai penggantinya, kami memutuskan untuk menggunakan hybrid cloud yang dimana menggabungkan kendali dari private cloud untuk data sesnsitif dan fleksibilitas dari public cloud untuk layanan yang membutuhkan skalabilitas tinggi. 
 
+## 5. Skenario Tandingan
+### Bagaimana jika kantor Dukcapil di daerah terpencil (3T) tidak memiliki infrastruktur lokal untuk terhubung ke Private Cloud pusat dan koneksi internetnya sering tidak stabil?
+
+1. **Dukcapil Daerah Sebagai Pengguna Layanan Terpusat (Tanpa Server Lokal):**
+   Dalam arsitektur Hybrid Cloud ini, kantor Dukcapil daerah tidak perlu membangun atau memelihara server *private cloud* sendiri. Seluruh infrastruktur *Private Cloud* dikelola secara terpusat oleh pemerintah pusat (PDN/Kementerian Dalam Negeri) dengan pendekatan menyerupai *Community Cloud* antarinstansi. Petugas Dukcapil daerah cukup mengakses aplikasi pelayanan melalui antarmuka web ringan (*thin client*) menggunakan koneksi VPN/mTLS resmi pemerintah menuju API Gateway pusat.
+2. **Penanganan Koneksi Tidak Stabil (Mode Antrean Lokal Terenkripsi):**
+   Untuk daerah 3T yang jaringannya sering terputus, aplikasi petugas di daerah dilengkapi fitur *offline queuing* sementara. Saat koneksi terputus, pengajuan perubahan data atau perekaman warga disimpan sementara dalam bentuk terenkripsi menggunakan kunci publik pusat di perangkat petugas (tidak bisa dibaca dalam bentuk *plaintext*). Begitu koneksi kembali stabil, antrean data tersebut dikirim secara otomatis ke *API Gateway* di *Private Cloud* pusat untuk diverifikasi dan disimpan ke database inti, lalu data sementara di perangkat lokal langsung dihapus.
+3. **Verifikasi Layanan Publik Tetap Berjalan:**
+   Sementara itu, warga maupun instansi lain (seperti bank atau sekolah) tetap dapat mengecek status kependudukan melalui *Portal Publik* di *Public Cloud* yang memiliki ketersediaan tinggi dan *caching* status minimal, sehingga gangguan jaringan di satu daerah terpencil tidak melumpuhkan layanan verifikasi nasional.
+
+## Diagram Pendukung
+Diagram visual untuk arsitektur Hybrid Cloud, pemetaan *service model*, serta alur akses data dapat dilihat pada folder [`bukti/`](bukti/).
 
 > Bagian 2 mata kuliah ini murni **analisis & desain di atas kertas** — tidak ada biaya cloud sama sekali, karena tugas berhenti di tahap rekomendasi, bukan implementasi nyata (implementasi baru mulai Tugas 11).
 
