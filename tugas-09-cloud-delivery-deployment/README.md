@@ -3,10 +3,10 @@
 **Materi terkait:** Karakteristik esensial cloud computing (NIST SP 800-145), Deployment Model (Public/Private/Hybrid/Community), Service Model (IaaS/PaaS/SaaS).
 
 **Kelompok:** [Kelompok 5]
-| Nama | NIM |
+| Nama | NIM | 
 | --- | --- |
 | Bethari Nevyta Amaries | 103072430016 |
-| Andi Athallah Radja Maliq Muhammad | 103072430016 |
+| Andi Athallah Radja Maliq Muhammad | 103072400034 |
 | Fathir Al Farih | 103072400002 |
 
 # Ringkasan Rekomendasi
