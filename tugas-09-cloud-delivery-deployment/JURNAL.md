@@ -2,9 +2,9 @@
 
 ## Diskusi deployment model
 - Opsi yang dipertimbangkan dan kenapa akhirnya memilih salah satu: ...
-  1. **Public Cloud murni** : sangat skalabel dan elastis, tapi data sensitif (NIK, biometrik) berada di infrastruktur yang tidak dikendalikan penuh oleh negara. Ditolak karena bertentangan dengan kebutuhan kedaulatan data dan UU PDP.
-  2. **Private Cloud murni** : kendali penuh dan keamanan tinggi, tapi biaya tinggi dan kurang elastis saat terjadi lonjakan akses (pemilu / pendaftaran sekolah).
-  3. **Hybrid Cloud** : dipilih sebagai solusi tengah. Data inti dan layanan sensitif tetap di Private Cloud (kendali negara), sedangkan portal publik dan penanganan lonjakan trafik diletakkan di Public Cloud (cloud bursting).
+  - **Public Cloud murni** : sangat skalabel dan elastis, tapi data sensitif (NIK, biometrik) berada di infrastruktur yang tidak dikendalikan penuh oleh negara. Ditolak karena bertentangan dengan kebutuhan kedaulatan data dan UU PDP.
+  - **Private Cloud murni** : kendali penuh dan keamanan tinggi, tapi biaya tinggi dan kurang elastis saat terjadi lonjakan akses (pemilu / pendaftaran sekolah).
+  - **Hybrid Cloud** : dipilih sebagai solusi tengah. Data inti dan layanan sensitif tetap di Private Cloud (kendali negara), sedangkan portal publik dan penanganan lonjakan trafik diletakkan di Public Cloud (cloud bursting).
 
 - Alasan akhir memilih Hybrid:
   - Memenuhi kebutuhan **kerahasiaan** (data sensitif tidak keluar dari kendali negara).
