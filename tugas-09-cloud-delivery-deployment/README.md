@@ -72,6 +72,7 @@ Maka dari itu, public cloud murni tidak dipilih karena keunggulan yang diberikan
 3. **Verifikasi Layanan Publik Tetap Berjalan:**
    Sementara itu, warga maupun instansi lain (seperti bank atau sekolah) tetap dapat mengecek status kependudukan melalui *Portal Publik* di *Public Cloud* yang memiliki ketersediaan tinggi dan *caching* status minimal, sehingga gangguan jaringan di satu daerah terpencil tidak melumpuhkan layanan verifikasi nasional.
 
+
 ## Diagram Pendukung
 Diagram visual untuk arsitektur Hybrid Cloud, pemetaan *service model*, serta alur akses data dapat dilihat pada folder [`bukti/`](bukti/).
 
